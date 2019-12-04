@@ -1,0 +1,38 @@
+<view class="preview">
+    <view class="bg">
+        <view wx:for="{{firstPage}}" wx:key="index" wx:if="{{item.type === 'bg'}}" style="left:{{item.x*width}}px ;top:{{item.y*height}}px; width: {{item.width*width}}px; height: {{item.height*height}}px; transform:rotate({{item.rotate}}deg); position: absolute;">
+            <image src="{{item.url}}" style="width:100%;height: 100%;" />
+        </view>
+        <view wx:for="{{firstPage}}" wx:key="index" wx:if="{{item.type === 'img'}}" style="left:{{item.x*width}}px ;top:{{item.y*height}}px; width: {{item.width*width}}px; height: {{item.height*height}}px; transform:rotate({{item.rotate}}deg); position: absolute;">
+            <image src="{{item.url}}" style="width:100%;height: 100%;" />
+        </view>
+        <view wx:for="{{firstPage}}" wx:key="index" wx:if="{{item.type === 'frame'}}" style="left:{{item.x*width}}px; top:{{item.y*height}}px; width:{{item.width*width}}px; height:{{item.height*height}}px;position: absolute;">
+            <view style="-webkit-clip-path:{{item.val}}; position: absolute; width: 100%; height: 100%;">
+                <image wx:if="{{item.url}}" src="{{item.url}}" style="width:{{item.imgWidth*width}}px; height:{{item.imgHeight*height}}px;left:{{item.left*width}}px;top:{{item.top*height}}px;transform:rotate({{item.rotate}}deg); filter:brightness({{item.brightness}});position: absolute;" />
+                <image wx:if="{{!item.url}}" style="width:100%; height:100%;" mode="aspectFill" src="../../resources/imgs/frameBg.png" />
+            </view>
+        </view>
+        <view wx:for="{{firstPage}}" wx:key="index" wx:if="{{item.type === 'paster'}}" style="left:{{item.x*width}}px ;top:{{item.y*height}}px; width: {{item.width*width}}px; height: {{item.height*height}}px; transform:rotate({{item.rotate}}deg); position: absolute;">
+            <image src="{{item.url}}" style="width:100%;height: 100%;" />
+        </view>
+        <view wx:for="{{firstPage}}" wx:key="index" class="{{item.sort == 'shu'?'shu':''}}" wx:if="{{item.type === 'text'}}" style="left:{{item.x*width}}px ;top:{{item.y*height}}px; width: {{item.width*width}}px; height: {{item.height*height}}px; transform:rotate({{item.rotate}}deg);color:{{item.color}};font-size:{{item.fontSize*width}}px;font-family:{{item.family}}; position: absolute;">
+            {{item.content?item.content:'请输入文字'}}
+        </view>
+    </view>
+</view>
+<view class="name_box">
+    <view class="name">
+        <input class="weui-input" value="{{ipt}}" placeholder="请为这个相册命名" bindblur="saveInput" />
+    </view>
+</view>
+<view class="bottom_btn">
+    <text class="save_name" bindtap="preview">确定</text>
+</view>
+<view class="isLogin" wx:if="{{isLogin}}">
+    <view class="login_box">
+        <text>您还没有登录，请先登录吧！</text>
+        <button open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+            <image src="/resources/imgs/wechat.png" mode="aspectFit"></image>
+        </button>
+    </view>
+</view>

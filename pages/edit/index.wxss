@@ -1,0 +1,618 @@
+  #canvas-drag{
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    background: white;
+    /* border: 2rpx solid blue; */
+  }
+  .canvas-drag-bg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+  }
+  #cvs{
+    position: absolute;
+    margin-top: 50rpx;
+  }
+
+  /* 背景图 */
+  #canvas-drag .bg{
+    position: absolute;
+  }
+  #canvas-drag .bg image {
+    width: 100%;
+    height: 100%;
+  }
+  #canvas-drag .sticker{
+    position: absolute;
+  }
+  #canvas-drag  .sticker image{
+    width: 100%;
+    height: 100%;
+  }
+  #canvas-drag .sticker .move {
+    width: 48rpx;
+    height: 48rpx;
+    position: absolute;
+    right: -24rpx;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  #canvas-drag .font .move {
+    width: 48rpx;
+    height: 48rpx;
+    position: absolute;
+    right: -24rpx;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  #canvas-drag .font .shu {
+    writing-mode:vertical-lr;
+  }
+  #canvas-drag .image{
+    position: absolute;
+  }
+  #canvas-drag .image .pic {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+  #canvas-drag .image .pic .inerImage{
+    position: absolute;
+  }
+  #canvas-drag .image .pic .inerImage image{
+    position: absolute;
+  }
+  #canvas-drag .image .move {
+    width: 48rpx;
+    height: 48rpx;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  #canvas-drag .image .moveTop {
+    width: 48rpx;
+    height: 48rpx;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 999;
+  }
+  #canvas-drag .font .moveTop {
+    width: 48rpx;
+    height: 48rpx;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+  #canvas-drag .font {
+    position: absolute;
+  }
+  
+  /* 操作栏 */
+  .nav {
+    padding-top: 60rpx;
+    padding-bottom: 60rpx;
+    display: flex;
+    justify-content: space-around;
+  }
+  .nav .everyNav{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .nav .everyNav image {
+    width: 64rpx;
+    height: 64rpx;
+    margin-bottom: 20rpx;
+  }
+  
+  .box {
+    padding-bottom: 40rpx;
+  }
+  /* 底部按钮 */
+  .box .btn {
+    display: flex;
+    justify-content: space-around;
+  }
+  .box .btn .left {
+    width:312rpx;
+    height:96rpx;
+    background:linear-gradient(180deg,rgba(250,57,135,1) 0%,rgba(250,16,96,1) 100%);
+    box-shadow:0rpx 6rpx 16rpx 0rpx rgba(255,15,102,0.47);
+    border-radius:48rpx;
+    font-size: 36rpx;
+    color: #FFFFFF;
+  }
+  .box .btn .right {
+    width:312rpx;
+    height:96rpx;
+    background:linear-gradient(180deg,rgba(250,57,135,1) 0%,rgba(250,16,96,1) 100%);
+    box-shadow:0rpx 6rpx 16rpx 0rpx rgba(255,15,102,0.47);
+    border-radius:48rpx;
+    font-size: 36rpx;
+    color: #FFFFFF;
+  }
+  .box .btn .no_right {
+    width:312rpx;
+    height:96rpx;
+    background:rgba(244,244,244,1);
+    box-shadow:0rpx 4rpx 8rpx 0rpx rgba(0,0,0,0.2);
+    border-radius:48rpx;
+  }
+  
+  /*弹出层*/
+  .modals {
+    position: fixed;
+    z-index: 999;
+    width: 100%;
+    height: 562rpx;
+    bottom: 0;
+  }
+  
+  .bottom-dialog-body {
+    position: absolute;
+    z-index: 10001;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 30rpx;
+    height: 280rpx;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  .Sticker_Modal{
+    position: absolute;
+    z-index: 10001;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 30rpx;
+    height: 280rpx;
+    background:rgba(153,153,153,1);
+  }
+  .close {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20rpx;
+  }
+  .bottom-dialog-body .close image {
+    width: 48rpx;
+    height: 48rpx;
+  }
+  .section_title{
+    display: block;
+    width: 100%;
+    text-align: center;
+    color: white;
+  }
+  .Sticker_Modal .close image {
+    width: 48rpx;
+    height: 48rpx;
+  }
+  .Sticker_Modal .Sticker{
+    height:116rpx;
+    white-space: nowrap;
+  }
+  .Sticker_Modal .Sticker .everySticker {
+    width:116rpx;
+    height:116rpx;
+    border-radius:30rpx;
+    margin-right: 28rpx;
+    display: inline-block;
+  }
+  .Sticker_Modal .Sticker .everySticker image {
+    width: 100%;
+    height: 100%;
+    border-radius:30rpx;
+  }
+  .Sticker_Modal .btn {
+    width:270rpx;
+    height:64rpx;
+    background:linear-gradient(180deg,rgba(250,57,135,1) 0%,rgba(250,16,96,1) 100%);
+    border-radius:48rpx;
+    font-size: 28rpx;
+    color: #FFFFFF;
+    margin-top: 30rpx;
+    line-height: 64rpx;
+    text-align: center;
+  }
+  /* 编辑文字弹出层 */
+  .Text_Modal {
+    position: absolute;
+    z-index: 10001;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 30rpx;
+    padding-right: 0;
+    height: 502rpx;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .Text_Modal .changTextColor {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 90%;
+    color: white;
+    align-items: center;
+  }
+
+  .Text_Modal .changTextColor .everchangTextColor {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30rpx;
+  }
+
+  .Text_Modal .changTextColor .everchangTextColor slider{
+    width: 500rpx;
+  } 
+
+  .Text_Modal .close {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 48rpx;
+    padding-right: 30rpx;
+  }
+  .Text_Modal .close image {
+    width: 48rpx;
+    height: 48rpx;
+  }
+  .Text_Modal .Text_box {
+    padding-right: 30rpx;
+  }
+  .Text_Modal .Text_box .everyList {
+    display: flex;
+    margin-bottom: 20rpx;
+    align-items: center;
+    justify-content: center;
+  }
+  .Text_Modal .Text_box .everyList .essay {
+    width:520rpx;
+    height:64rpx;
+    line-height: 64rpx;
+    background: #FA3987 ;
+    border-radius:48rpx;
+    color: white;
+    font-size: 28rpx;
+    text-align: center;
+  }
+  .Text_Modal .Text_box .everyList .Text_title {
+    color: white;
+    font-size: 32rpx;
+  }
+  .Text_Modal .Text_box .everyList .Text_pick {
+    width:406rpx;
+    height:64rpx;
+    background:rgba(255,255,255,1);
+    border-radius:32rpx;
+    margin-left: 60rpx;
+  }
+  .Text_Modal .Text_box .everyList .color {
+    text-align: center;
+    line-height: 64rpx;
+    font-size: 28rpx;
+    color: white;
+  }
+  .Text_Modal .Text_box .everyList .text {
+    text-align: center;
+    line-height: 64rpx;
+    font-size: 28rpx;
+  }
+  .Text_Modal .Text_box .everyList .btn {
+    width:406rpx;
+    margin-left: 60rpx;
+    display: flex;
+    justify-content: space-between;
+  }
+  /* 横排竖排 */
+  .Text_Modal .Text_box .everyList .btn .textDirection{
+    line-height: 60rpx;
+    color: #FF0662;
+    border:2px solid rgba(255,6,98,1);
+  } 
+  .Text_Modal .Text_box .everyList .btn button {
+    width:172rpx;
+    height:64rpx;
+    background:rgba(255,255,255,1);
+    border-radius:32rpx;
+    color: #333333;
+    font-size: 32rpx;
+    line-height: 64rpx;
+  }
+  .EssayBox{
+    width: 100%;
+    height: 100%;
+  }
+  .everyEssay {
+    color: white;
+    font-size: 32rpx;
+    margin-bottom: 25rpx;
+  }
+  .ColorBox {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    white-space: nowrap;
+    padding-bottom: 10px;
+  }
+  .ColorBox .everyColorbox {
+    width: 90rpx;
+    height: 90rpx;
+    margin-right: 30rpx;
+    margin-bottom: 30rpx;
+    float: left;
+    border-radius: 16rpx;
+    font-size: 12px;
+    color: black;
+  }
+  .ColorBox .everyFamilybox {
+    font-size: 20px;
+    text-align: center;
+    line-height: 50px;
+  }
+
+  .Text_Modal .close .change {
+    color: #FF0662;
+    font-size: 32rpx;
+  }
+  /* 全部贴纸 */
+  .AllSticker {
+    border-top: 2rpx solid rgba(0,0,0,0.25);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 1400rpx;
+    background:rgba(244,244,244,1);
+    padding-left: 39rpx;
+    padding-top: 40rpx;
+    z-index: 1005;
+  }
+  .AllSticker .every_Sticker {
+    width: 138rpx;
+    height: 138rpx;
+    float: left;
+    margin-right: 40rpx;
+    margin-bottom: 40rpx;
+    position: relative;
+  }
+  .AllSticker .every_Sticker .Sticker_img {
+    width: 100%;
+    height: 100%;
+  }
+  .AllSticker .every_Sticker .select {
+    width: 48rpx;
+    height: 48rpx;
+    position: absolute;
+    top: 10rpx;
+    right: 10rpx;
+  }
+  .AllSticker .btn {
+    width: 100%;
+    height:96rpx;
+    position: fixed;
+    bottom: 108rpx;
+    left: 0;
+    display: flex;
+    justify-content: space-around;
+  }
+  .AllSticker .btn .everybtn {
+    width:320rpx;
+    background:rgba(250,57,135,1);
+    box-shadow:0rpx 6rpx 16rpx 0rpx rgba(255,15,102,0.47);
+    border-radius:48rpx;
+    color: #FFFFFF;
+    font-size: 36rpx;
+  }
+  
+  /*动画前初始位置*/
+.bottom-pos {
+  -webkit-transform: translateY(100%);
+  transform: translateY(100%);
+}
+.Finish_editing{
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom:0;
+  right: 0;
+  background:rgba(0,0,0,.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Finish_editing .editing_box{
+  width:690rpx;
+  background:rgba(255,255,255,1);
+  border-radius:16rpx;
+}
+.Finish_editing .editing_box .editing_box_top {
+  height: 244rpx;
+  width: 100%;
+  border-bottom: 2rpx solid rgba(242,242,242,1);
+  color: #333333;
+  font-size: 32rpx;
+  text-align: center;
+  line-height: 244rpx;
+}
+.Finish_editing .editing_box .editing_box_bottom {
+  display: flex;
+}
+.Finish_editing .editing_box .editing_box_bottom .noFinish {
+  border-right: 2rpx solid rgba(242,242,242,1);
+  width: 50%;
+  height: 128rpx;
+  text-align: center;
+  line-height: 128rpx;
+  color: #999999;
+  font-size: 32rpx;
+}
+.Finish_editing .editing_box .editing_box_bottom .Finish {
+  width: 50%;
+  height: 128rpx;
+  text-align: center;
+  line-height: 128rpx;
+  color: #FF0662 ;
+  font-size: 32rpx;
+}
+  /* 页面管理 */
+.pageManage{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1600rpx;
+  background:rgba(244,244,244,1);
+}
+.pageManage .box {
+  padding-left: 146rpx;
+  padding-top: 76rpx;
+  border-top: 2rpx solid rgba(0,0,0,0.25);
+}
+.pageManage .box .touchMove {
+  position: absolute;
+  color: #C8C8C8;
+  font-size: 28rpx;
+  top: 16rpx;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+.pageManage .everyPage {
+  width:200rpx;
+  height:282rpx;
+  float: left;
+  margin-bottom: 94rpx;
+  margin-right: 60rpx;
+  text-align: center;
+  position: relative;
+  background: white;
+  display: flex;
+  justify-content: center;
+}
+.pageManage .everyPage .everyPage_moudl {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+.pageManage .everyPage .every {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.pageManage .everyPage .every .shu {
+  writing-mode:vertical-lr;
+}
+
+.pageManage .everyPage .selectImg {
+  width: 48rpx;
+  height: 48rpx;
+  position: absolute;
+  top: 10rpx;
+  right: 10rpx;
+  z-index: 9;
+}
+.pageManage .everyPage text {
+  color: #333333;
+  font-size: 32rpx;
+  position: absolute;
+  bottom: -50rpx;
+}
+.pageManage .btn {
+  width: 100%;
+  height: 96rpx;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  bottom: 108rpx;
+  z-index: 9;
+}
+.pageManage .btn button {
+  width:360rpx;
+  height:96rpx;
+  line-height: 96rpx;
+  background:linear-gradient(180deg,rgba(250,57,135,1) 0%,rgba(250,16,96,1) 100%);
+  box-shadow:0rpx 6rpx 16rpx 0rpx rgba(255,15,102,0.47);
+  border-radius:48rpx;
+  font-size:36rpx;
+  color:rgba(255,255,255,1);
+}
+.pageManage .btn text {
+  position: absolute;
+  top: -80rpx;
+  font-size: 26rpx;
+  color: rgba(0,0,0,0.25);
+}
+.pageManage .everyBtn {
+  display: flex;
+  justify-content: space-around;
+  width:100%;
+  height:96rpx;
+  position: fixed;
+  bottom: 108rpx;
+  z-index: 9;
+}
+.pageManage .everyBtn .Btn_list {
+  width:312rpx;
+  height:96rpx;
+  background:linear-gradient(180deg,rgba(250,57,135,1) 0%,rgba(250,16,96,1) 100%);
+  box-shadow:0rpx 6rpx 16rpx 0rpx rgba(255,15,102,0.47);
+  border-radius:48rpx;
+  font-size: 36rpx;
+  color: #FFFFFF;
+}
+/* 暂未登陆 */
+.isLogin {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, .5);
+  z-index: 20;
+}
+.login_box {
+  overflow: hidden;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 630rpx;
+  height: 260rpx;
+  background: #fff;
+  border-radius: 16rpx;
+  transform: translate(-50%, -50%);
+}
+.login_box text {
+  display: block;
+  margin-top: 40rpx;
+  line-height: 44rpx;
+  font-size: 32rpx;
+  text-align: center;
+}
+.login_box button {
+  display: block;
+  width: 96rpx;
+  height: 96rpx;
+  margin: 0 auto;
+  margin-top: 40rpx;
+  padding: 0;
+}
+.login_box button image {
+  display: block;
+  width: 100%;
+  height: 100%;
+}

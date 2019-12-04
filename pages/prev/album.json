@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "预览电子相册",
+  "usingComponents": {
+    "painter": "/components/painter/painter"
+  }
+}

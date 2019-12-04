@@ -1,0 +1,23 @@
+<!--pages/home/importPicture/index.wxml-->
+<view class="box" bindtap="clean">
+    <view  class="text">已添加：<text class="num"> {{allPicture.length}} </text>张照片 还可添加：<text class="num"> {{allPageImg.length - allPicture.length }} </text>张照片</view>
+
+        <view  class="img"  wx:for="{{allPicture}}" wx:key="index">
+                <image class="img localimg" data-name="{{index}}" bind:touchstart="touchstart" bind:touchend="end" bind:touchmove="touchmove" bindlongtap='bindlongtap' catchtap="bind" src='{{item.url}}' />
+
+                <view class="{{changeImgID === index ? 'changeImg' :''}}" wx:if="{{changeImgID === index}}">
+                    <button bindtap="changeImg">更换</button>
+                </view>
+        </view>
+
+        <image class="copyImg"  wx:if="{{showCopyImg}}" style='left: {{startX-40}}px; top: {{startY-40}}px;' src='{{allPicture[selectImgId].url}}' />
+
+        <view class="add" bindtap="addImg" wx:if="{{allPageImg.length > allPicture.length}}">
+            <image class="addImg" src="/resources/imgs/add.png" />
+        </view>
+</view>
+
+<view class="clean" bindtap="clean"></view>
+
+<button class="btn" bindtap="toEdit" wx:if="{{!delOrIn}}">确认导入</button>
+<view class="del" wx:if="{{delOrIn}}">拖到此处删除</view>

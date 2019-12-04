@@ -1,0 +1,139 @@
+page {
+    position: relative;
+    background: white;
+}
+.heard{
+    height:260rpx;
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    padding-left: 60rpx;
+    padding-right: 60rpx;
+    align-items: center;
+    background:rgba(255,255,255,1);
+    box-shadow:0px 2px 4px 0px rgba(0,0,0,0.1);
+    border-radius:0px 0px 16px 16px;
+}
+.heard .imgBox{
+    width:72px;
+    height:72px;
+    border-radius: 50%;
+    box-shadow:0px 2px 7px 0px rgba(255,6,98,0.25);
+    border:1px solid rgba(255,255,255,1);
+}
+.heard .imgBox .img{
+    width:70px;
+    height:70px;
+    border-radius: 50%;
+    border:1px solid rgba(255,255,255,1);
+}
+.heard .moreselect{
+    width: 12rpx;
+    height: 22rpx;
+}
+.heard .name{
+    position: absolute;
+    left: 240rpx;
+    font-size:36rpx;
+    color:rgba(51,51,51,1);
+}
+.myWorks{
+    height: 110rpx;
+    padding-left: 40rpx; 
+    padding-right: 60rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;   
+}
+.myWorks .name{
+    font-size:36rpx;
+    color: #333333;
+}
+.myWorks text{
+    font-size: 24rpx;
+    color:rgba(102,102,102,1);
+}
+.myWorks .moreselect{
+    width: 12rpx;
+    height: 22rpx;
+    margin-left: 10rpx;
+}
+
+.workList {
+    width: 662rpx;
+    padding: 0 34rpx;
+    white-space: nowrap;
+}
+.everyList{
+    display: flex;
+    display: inline-block;
+    margin-right: 40rpx;
+    margin-top: 10rpx;
+}
+.everyList:first-child {
+    margin-left: 10rpx;
+}
+.everyList:last-child {
+    margin-right: 10rpx;
+}
+.everyList .img{
+    width: 170rpx;
+    height: 240rpx;
+    box-shadow:0px 0px 4px 0px rgba(0,0,0,0.5);
+    border-radius:16rpx;
+    margin-bottom: 10rpx;
+}
+.everyList .img image {
+    width: 100%;
+    height: 100%;
+    border-radius:16rpx;
+}
+.everyList .text{
+    width: 100%;
+    text-align: center;
+    color:rgba(51,51,51,1);
+    font-size: 24rpx;
+}
+.allTake{
+    padding-left: 40rpx;
+    padding-right: 40rpx;
+    margin-top: 42rpx;
+}
+.allTake .take{
+    height:52px;
+    box-shadow:0px 0px 4px 0px rgba(0,0,0,0.1);
+    border-radius:8px;
+    margin-bottom: 30rpx;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 36rpx;
+    padding-right: 34rpx;
+    position: relative;
+}
+.allTake .take .icon{
+    width: 48rpx;
+    height: 48rpx;
+}
+.allTake .take .text{
+    position: absolute;
+    left: 104rpx;
+    color:rgba(51,51,51,1);
+    font-size: 32rpx;
+}
+.allTake .take .moreselect{
+    width: 12rpx;
+    height: 22rpx;
+}
+
+.tabbar_bottom {
+    position: fixed;
+    left: 0;
+    bottom: -80rpx;
+    width: 750rpx;
+    height: 84rpx;
+    background: rgba(0, 0, 0, 0.99);
+    opacity: 0.21;
+    filter: blur(28rpx);
+    z-index: -1;
+}

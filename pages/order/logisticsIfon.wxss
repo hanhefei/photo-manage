@@ -1,0 +1,162 @@
+.box {
+    padding: 30rpx;
+    border-top: 2rpx solid rgba(0,0,0,0.25);
+}
+
+/* 商品信息 */
+.commodity{
+    background:rgba(255,255,255,1);
+    border-radius:16rpx;
+    margin-bottom: 16rpx;
+    padding: 30rpx;
+    display: flex;
+}
+.commodity .img{
+    width:160rpx;
+    height:226rpx;
+    border-radius:16rpx;
+}
+.commodity .right{
+    margin-left: 30rpx;
+    display: flex;
+    flex-direction: column;
+}
+.commodity .right .title{
+    font-size:28rpx;
+    margin-bottom: 12rpx;
+    color:rgba(51,51,51,1);
+}
+.commodity .right .down .time{
+    color: #999999;
+    font-size: 24rpx;
+    margin-bottom: 36rpx;
+}
+.commodity .right .down .money{
+    color: #DA2626;
+    font-size: 32rpx;
+}
+
+/* 物流公司 */
+.express{
+    background:rgba(255,255,255,1);
+    border-radius:16rpx;
+    margin-bottom: 16rpx;   /* 8/16 */
+}
+.express .top{
+    border-bottom:2rpx solid rgba(242,242,242,1);
+    padding:30rpx;
+    display: flex;
+}
+.express .top .text{
+    display: flex;
+    flex-direction: column;
+}
+.express .top .pic{
+    width: 96rpx;
+    height: 96rpx;
+    margin-right: 30rpx;
+}
+.express .top .pic image{
+    width: 100%;
+    height: 100%;
+}
+.express .top .company{
+    color: #333333;
+    font-size: 28rpx;
+    margin-bottom: 15rpx;
+}
+.express .top .tel{
+    color: #666666;
+    font-size: 28rpx;
+}
+.express .down{
+    padding: 30rpx;
+    color: #333333;
+    font-size: 28rpx;
+}
+
+/* 物流信息 */
+.Expressmessage{
+    background: white;
+    border-radius:16rpx;
+    padding:30rpx;
+}
+.Expressmessage .info .everyStep{
+    margin-bottom: 30rpx;
+    display: flex;
+}
+.Expressmessage .info .everyStep .left{
+    width: 84rpx;
+    display: flex;
+    flex-direction: column;
+    margin-right: 10rpx;
+}
+.Expressmessage .info .everyStep .left .date{
+    font-size:28rpx;
+    color:#999999
+}
+.Expressmessage .info .everyStep .left .time{
+    font-size:22rpx;
+    color:#999999;
+    text-align: right;
+    margin-top: 10rpx;
+}
+.Expressmessage .info .everyStep .centre{
+    width: 48rpx;
+    height: 48rpx;
+    margin-right: 20rpx;
+    position: relative;
+}
+.Expressmessage .info .everyStep .centre .img{
+    width: 48rpx;
+    height: 48rpx;
+    background: #fff;
+    border-radius: 50%
+}
+.Expressmessage .info .everyStep .centre .circle {
+    width: 14rpx;
+    height: 14rpx;
+    margin: 0 auto;
+    margin-top: 24rpx;
+    background: #CDCDCD;
+    border-radius: 50%;
+}
+.Expressmessage .info .everyStep .centre .line{
+    width: 4rpx;
+    height: 150rpx;
+    /* height: 80rpx; */
+    background: #F3F3F3;
+    position: absolute;
+    /* left: 20rpx; */
+    left: 24rpx;
+    /* top: 55rpx; */
+    top: 50rpx;
+}
+.Expressmessage .info .everyStep .right{
+    width: 458rpx;
+}
+.Expressmessage .info .everyStep .right .state{
+    color: #999999;
+    font-size: 28rpx;
+}
+.Expressmessage .info .everyStep .right .text{
+    color: #999999;
+    font-size: 24rpx;
+    margin-top: 10rpx;
+}
+.Expressmessage .info .finish .right .state{
+    color: #333333;
+}
+.Expressmessage .info .finish .right .text{
+    color: #333333;
+}
+.Expressmessage .info .finish .left .date{
+    color: #333333;
+}
+.Expressmessage .info .finish .left .time{
+    color: #333333;
+}
+.Expressmessage .right .text b{
+    color: #FE6B38;
+    font-weight: normal;
+}

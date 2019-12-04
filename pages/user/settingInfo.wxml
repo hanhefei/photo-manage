@@ -1,0 +1,10 @@
+<view class="container">
+    
+    <view class="phone {{tp == 'phone' ? 'show' : ''}}">
+        客服电话：
+        <text bindtap="call">{{phone}}</text>
+    </view>
+
+    <view class="txt {{tp == 'txt' ? 'show' : ''}}">{{txt}}</view>
+
+</view>

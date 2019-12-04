@@ -1,0 +1,117 @@
+.preview {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+/* 音乐 */
+.preview .music {
+    width: 48rpx;
+    height: 48rpx;
+    position: absolute;
+    top: 100rpx;
+    right: 40rpx;
+    z-index: 9;
+}
+.shu {
+    writing-mode:vertical-lr;
+  }
+
+.preview .rotate {
+    animation: spin 3s linear infinite;
+}
+
+@-webkit-keyframes spin {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+.swiper {
+    position: relative;
+    top: 50%;
+    width: 750rpx;
+    height: 1060rpx;
+    transform: translateY(-50%);
+}
+
+.box {
+    position: relative;
+    top: 50%;
+    width: 750rpx;
+    height: 1060rpx;
+    transform: translateY(-50%);
+}
+
+
+
+.preview .bg {
+    display: block;
+    overflow: hidden;
+    background: white;
+}
+
+.preview .Upslide {
+    width: 48rpx;
+    height: 48rpx;
+    position: absolute;
+    bottom: 132rpx;
+    left: 50%;
+    margin-left: -24rpx;
+}
+
+.bottom_btn {
+    position: absolute;
+    bottom: 40rpx;
+    display: flex;
+    width: 100%;
+}
+
+.bottom_btn .share {
+    position: absolute;
+    width: 88rpx;
+    height: 88rpx;
+    bottom: 120rpx;
+    right: 20rpx;
+}
+
+.bottom_btn .share image {
+    width: 88rpx;
+    height: 88rpx;
+    position: absolute;
+    left: 0;
+}
+
+.bottom_btn button {
+    width: 292rpx;
+    height: 96rpx;
+    background: linear-gradient(180deg, rgba(250, 57, 135, 1) 0%, rgba(250, 16, 96, 1) 100%);
+    border-radius: 48rpx;
+    color: #FFFFFF;
+    font-size: 34rpx;
+    line-height: 96rpx;
+    text-align: center;
+}
+
+.bottom_btn .right {
+    width: 336rpx;
+}
+
+
+
+.saveCode {
+    position: absolute;
+    right: 20rpx;
+    bottom: 232rpx;
+    display: inline-block;
+    width: 88rpx;
+    height: 88rpx;
+    font-size: 36rpx;
+    text-align: center;
+}

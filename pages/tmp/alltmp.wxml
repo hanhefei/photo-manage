@@ -1,0 +1,21 @@
+<view class="box">
+    <view class="everLine" wx:for="{{tmpNum / 3}}" wx:key="i" wx:for-index="i">
+        <view class="everRow" wx:for="{{tmpTimes ==  i ?  tmpNum - (tmpTimes * 3) : 3}}" wx:key="j" wx:for-index="j" data-id="{{tmpList[3 * i + j].id}}" bindtap="select">
+            <image src="{{tmpList[3 * i + j].start}}" mode="aspectFit" />
+
+            <!-- <view class="prevBox_model" style="width: {{referWidth}}px; height: {{referHeight}}px;">
+                <image src="{{items.url}}" mode="aspectFit" style="left: {{items.x * referWidth}}px; top: {{items.y * referHeight}}px; width: {{items.width * referWidth}}px; height: {{items.height * referHeight}}px; transform: rotateZ({{items.rotate}}deg); z-index: 1;" wx:for="{{tmpList[3 * i + j].images}}" wx:for-item="items" wx:for-index="idx" wx:key="{{idx}}" wx:if="{{items.type != 'frame'}}"></image>
+
+                <view wx:for="{{tmpList[3 * i + j].images}}" wx:for-item="items" wx:for-index="idx" wx:key="{{idx}}" style="-webkit-clip-path: {{items.val}}; left: {{items.x * referWidth}}px; top: {{items.y * referHeight}}px; width: {{items.width * referWidth}}px; height: {{items.height * referHeight}}px; transform: rotateZ({{items.rotate}}deg); z-index: 1;" wx:if="{{items.type == 'frame'}}">
+                    <image src="/resources/imgs/frameBg.png" mode="aspectFill"></image>
+                </view>
+            </view> -->
+
+            <view class="text">{{tmpList[3 * i + j].name}}</view>
+        </view>
+        <view class="bottom-top"></view>
+        <view class="bottom"></view>
+    </view>
+
+    <tips wx:if="{{tmpList.length < 0 || tmpList.length == 0}}"></tips>
+</view>

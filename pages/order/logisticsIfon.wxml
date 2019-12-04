@@ -1,0 +1,104 @@
+    <view class="box">
+
+        <!-- 商品信息 -->
+        <view class="commodity">
+            <image class="img" src="{{orderInfo.images}}" />
+            <view class="right">
+                <view class="title">{{orderInfo.name}}</view>
+                <view class="down">
+                    <view class="time">{{time.time}}</view>
+                    <view class="money">￥{{orderInfo.price}}</view>
+                </view>
+            </view>
+        </view>
+    
+        <!-- 物流公司 -->
+        <view class="express">
+            <view class="top">
+                <view class="pic">
+                    <image class="img" src="/resources/imgs/shunFeng.png" wx:if="{{logisticsDt.ShipperCode == 'SF'}}" />
+                    <image class="img" src="/resources/imgs/baiShi.png" wx:if="{{logisticsDt.ShipperCode == 'HTKY'}}" />
+                    <image class="img" src="/resources/imgs/zhongTong.png" wx:if="{{logisticsDt.ShipperCode == 'ZTO'}}" />
+                    <image class="img" src="/resources/imgs/shenTong.png" wx:if="{{logisticsDt.ShipperCode == 'STO'}}" />
+                    <image class="img" src="/resources/imgs/yuanTong.png" wx:if="{{logisticsDt.ShipperCode == 'YTO'}}" />
+                    <image class="img" src="/resources/imgs/yunDa.png" wx:if="{{logisticsDt.ShipperCode == 'YD'}}" />
+                    <image class="img" src="/resources/imgs/tianTian.png" wx:if="{{logisticsDt.ShipperCode == 'HHTT'}}" />
+                    <image class="img" src="/resources/imgs/jingDong.png" wx:if="{{logisticsDt.ShipperCode == 'JD'}}" />
+                    <image class="img" src="/resources/imgs/zhaiJiSong.png" wx:if="{{logisticsDt.ShipperCode == 'ZJS'}}" />
+                </view>
+                
+                <view class="text">
+                    <view class="company">
+                        {{logisticsDt.ShipperCode == "SF" ? "顺丰速运" : ""}}
+                        {{logisticsDt.ShipperCode == "HTKY" ? "百世快递" : ""}}
+                        {{logisticsDt.ShipperCode == "ZTO" ? "中通快递" : ""}}
+                        {{logisticsDt.ShipperCode == "STO" ? "申通快递" : ""}}
+                        {{logisticsDt.ShipperCode == "YTO" ? "圆通速递" : ""}}
+                        {{logisticsDt.ShipperCode == "YD" ? "韵达速递" : ""}}
+                        {{logisticsDt.ShipperCode == "HHTT" ? "天天快递" : ""}}
+                        {{logisticsDt.ShipperCode == "JD" ? "京东快递" : ""}}
+                        {{logisticsDt.ShipperCode == "ZJS" ? "宅急送" : ""}}
+                    </view>
+                    <view class="tel" bindtap="call">
+                        官方电话 
+                        {{logisticsDt.ShipperCode == "SF" ? "95338" : ""}}
+                        {{logisticsDt.ShipperCode == "HTKY" ? "95320" : ""}}
+                        {{logisticsDt.ShipperCode == "ZTO" ? "95311" : ""}}
+                        {{logisticsDt.ShipperCode == "STO" ? "95543" : ""}}
+                        {{logisticsDt.ShipperCode == "YTO" ? "95554" : ""}}
+                        {{logisticsDt.ShipperCode == "YD" ? "95546" : ""}}
+                        {{logisticsDt.ShipperCode == "HHTT" ? "400-188-8888" : ""}}
+                        {{logisticsDt.ShipperCode == "JD" ? "950616" : ""}}
+                        {{logisticsDt.ShipperCode == "ZJS" ? "400-678-9000" : ""}}
+                        >
+                    </view>
+                </view>
+            </view>
+
+            <view class="down">
+                {{logisticsDt.ShipperCode == "SF" ? "顺丰速运" : ""}}
+                {{logisticsDt.ShipperCode == "HTKY" ? "百世快递" : ""}}
+                {{logisticsDt.ShipperCode == "ZTO" ? "中通快递" : ""}}
+                {{logisticsDt.ShipperCode == "STO" ? "申通快递" : ""}}
+                {{logisticsDt.ShipperCode == "YTO" ? "圆通速递" : ""}}
+                {{logisticsDt.ShipperCode == "YD" ? "韵达速递" : ""}}
+                {{logisticsDt.ShipperCode == "HHTT" ? "天天快递" : ""}}
+                {{logisticsDt.ShipperCode == "JD" ? "京东快递" : ""}}
+                {{logisticsDt.ShipperCode == "ZJS" ? "宅急送" : ""}}
+                {{logisticsDt.LogisticCode}}
+            </view>
+        </view>
+    
+        <!-- 物流信息 -->
+        <view class="Expressmessage">
+            <view class="info">
+                <view class="everyStep {{index == 0 ? 'finish' : ''}}" wx:for="{{logisticsDt.Traces}}" wx:key="index">
+                    <view class="left">
+                        <view class="date">{{item.date}}</view>
+                        <view class="time">{{item.time}}</view>
+                    </view>
+                    <view class="centre">
+                        <!-- <image class="img" style="display:none" src="https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640" /> -->
+                        <image class="img" src="/resources/imgs/sign.png" wx:if="{{item.isShou}}" />
+
+                        <image class="img" src="/resources/imgs/deliver.png" wx:if="{{item.isPai}}" />
+
+                        <view class="circle" wx:if="{{!item.isPai && !item.isShou}}"></view>
+
+                        <view class="line" wx:if="{{index !=  logisticsDt.Traces.length - 1}}"></view>
+                    </view>
+                    <view class="right">
+                        <view class="state" wx:if="{{item.isShou}}">已签收</view>
+
+                        <view class="state" wx:if="{{item.isPai}}">派送中</view>
+
+                        <view class="text" wx:if="{{!item.tel || !item.isPai}}">{{item.AcceptStation}}</view>
+
+                        <view class="text" wx:if="{{item.tel && item.isPai}}" data-tel="{{item.tel}}" bindtap="callPai">{{item.AcceptStation}}</view>
+                    </view>
+                </view>
+    
+            </view>
+        </view>
+
+    </view>

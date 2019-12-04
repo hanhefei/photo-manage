@@ -1,0 +1,72 @@
+<!--pages/personalCenter/index.wxml-->
+<view class="container">
+    
+    <button class="heard" open-type="getUserInfo" bindgetuserinfo="getUserInfo" wx:if="{{!openid}}">
+        <view class="imgBox">
+            <image class="img" src="{{headimg}}" />
+        </view>
+
+        <view class="name">{{username}}</view>
+
+        <view>
+            <image class="moreselect" src="../../resources/imgs/moreselect.png" />
+        </view>
+    </button>
+
+    <view class="heard" bindtap="toAccountSetting" wx:else>
+        <view class="imgBox">
+            <image class="img" src="{{headimg}}" />
+        </view>
+
+        <view class="name">{{username}}</view>
+
+        <view>
+            <image class="moreselect" src="../../resources/imgs/moreselect.png" />
+        </view>
+    </view>
+
+    <view class="myWorks">
+        <view class="name">我的作品</view>
+        <view bindtap="toWork">
+            <text>查看更多</text>
+            <image class="moreselect" src="/resources/imgs/moreselect.png" />
+        </view>
+    </view>
+
+    <scroll-view class="workList" scroll-x>
+        <view class="everyList" wx:for="{{my_workTen}}" wx:key="index" data-name="{{item.id}}" bindtap="toPreview">
+            <view class="img">
+                <image src="{{item.start}}" />
+            </view>
+            <view class="text">{{item.name}}</view>
+        </view>
+    </scroll-view>
+
+    <view class="allTake">
+        <view class="take" bindtap="toOrder">
+            <image class="icon" src="../../resources/imgs/order.png" />
+            <text class="text">我的订单</text>
+            <image class="moreselect" src="../../resources/imgs/moreselect.png" />
+        </view>
+
+        <view class="take" bindtap="toAddress">
+            <image class="icon" src="../../resources/imgs/address.png" />
+            <text class="text">我的地址</text>
+            <image class="moreselect" src="../../resources/imgs/moreselect.png" />
+        </view>
+
+        <view class="take" bindtap="toSetting">
+            <image class="icon" src="../../resources/imgs/Setup.png" />
+            <text class="text">系统设置</text>
+            <image class="moreselect" src="../../resources/imgs/moreselect.png" />
+        </view>
+
+        <view class="take" bindtap="toFeedback">
+            <image class="icon" src="../../resources/imgs/tickling.png" />
+            <text class="text">问题反馈</text>
+            <image class="moreselect" src="../../resources/imgs/moreselect.png" />
+        </view>
+    </view>
+
+    <view class="tabbar_bottom"></view>
+</view>

@@ -1,0 +1,62 @@
+<view class="container">
+    <view class="address everyCss">
+        <image src="/resources/imgs/orderInfo_adress.png" mode="aspectFit" />
+
+        <view class="addressInfo" bindtap="toAddress" wx:if="{{address}}">
+            <view class="addressInfo_msg">
+                {{address.name}}
+                <text>{{address.mobile}}</text>
+            </view>
+
+            <text>{{address.address}} {{address.gps_addr}}</text>
+        </view>
+
+        <view class="addressInfo" bindtap="toAddress" wx:else>
+            <text>点击选择地址</text>
+        </view>
+    </view>
+
+    <view class="book everyCss">
+        <image src="{{tmpDt.start}}" mode="aspectFit" />
+
+        <view class="bookInfo">
+            <view class="bookTitle">
+                <text>{{tmpDt.name}}</text>
+                <text>￥{{price}}</text>
+            </view>
+
+            <view class="bookNum">
+                <text>{{nowTime}}</text>
+                <text>x{{num}}</text>
+            </view>
+
+            <view class="bookMaterial">
+                <text>材质：{{mtxt}}  尺寸：{{ztxt}}</text>
+            </view>
+        </view>
+    </view>
+
+    <view class="txt everyCss">
+        <text>买家留言</text>
+
+        <input type="text" placeholder="50字以内（选填）" placeholder-style="color: #999999;" maxlength="50" bindblur="saveInput" />
+    </view>
+
+    <view class="msg everyCss">
+        <view class="msgTxt" style="border-bottom: 2rpx solid #f2f2f2;">
+            <text>商品小计</text>
+            <text>￥{{price}}</text>
+        </view>
+
+        <view class="msgTxt">
+            <text>运费</text>
+            <text>￥0.00</text>
+        </view>
+    </view>
+
+    <view class="payInfo">
+        <view class="payMoney">共{{num }}件，合计:<text> {{price}} </text>元</view>
+
+        <text class="payBtn" bindtap="pay">立即支付</text>
+    </view>
+</view>

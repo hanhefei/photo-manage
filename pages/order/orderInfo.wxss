@@ -1,0 +1,400 @@
+.box{
+    padding: 30rpx;
+    padding-bottom: 80rpx;
+    border-top: 2rpx solid rgba(0,0,0,0.25);
+}
+.goods{
+    background:rgba(255,255,255,1);
+    border-radius:16rpx;
+    padding: 30rpx;
+    display: flex;
+    position: relative;
+    margin-bottom: 16rpx;
+}
+.goods image{
+    width:160rpx;
+    height:226rpx;
+    border-radius:16rpx;
+    margin-right: 30rpx;
+}
+.goods .text{
+    display: flex;
+    width: 290rpx;
+    word-wrap: break-word;
+    flex-direction: column;
+}
+.goods .text .name{
+    color: #333333;
+    font-size: 28rpx;
+    margin-bottom: 10rpx;
+}
+.goods .text .date{
+    color: #999999;
+    font-size: 24rpx;
+    margin-bottom: 30rpx;
+}
+.goods .text .money {
+    color: #DA2626;
+    font-size: 32rpx;
+}
+.goods .prevBtn {
+    position: absolute;
+    right: 30rpx;
+    line-height: 140rpx;
+    color: #FF0662;
+    font-size: 28rpx;
+}
+.adress {
+    background:rgba(255,255,255,1);
+    border-radius:16rpx;
+    padding: 38rpx 0 38rpx 30rpx;
+    display: flex;
+    margin-bottom: 16rpx;
+}
+.adress image {
+    width: 80rpx;
+    height: 80rpx;
+    margin-right: 20rpx;
+}
+.adress .info {
+    display: flex;
+    width: 530rpx;
+    flex-direction: column;
+}
+.adress .info .top .name {
+    color: #333333;
+    font-size: 28rpx;
+    margin-right: 20rpx;
+}
+.adress .info .top .tel {
+    color: #999999;
+    font-size: 28rpx;
+}
+.adress .info .down{
+    color: #333333;
+    font-size: 28rpx;
+    margin-top: 10rpx;
+    word-wrap: break-word;
+}
+
+.logistics {
+    background:rgba(255,255,255,1);
+    border-radius:16rpx;
+    padding: 38rpx 30rpx 38rpx 30rpx;
+    display: flex;
+    align-items: center;
+    margin-bottom: 16rpx;
+    position: relative;
+}
+.logistics image {
+    width: 80rpx;
+    height: 80rpx;
+    margin-right: 20rpx;
+}
+.logistics .info {
+    display: flex;
+    width: 480rpx;
+    word-wrap: break-word;
+    flex-direction: column;
+}
+.logistics .info .name {
+    color: #1879E6;
+    font-size: 28rpx;
+}
+.logistics .info .down{
+    color: #999999;
+    font-size: 28rpx;
+    margin-top: 10rpx;
+}
+.logistics .more_img{
+    position: absolute;
+    right: 30rpx;
+    width: 8rpx;
+    height: 16rpx;
+}
+
+.remarks {
+    display: flex;
+    width: 630rpx;
+    margin-bottom: 16rpx;
+    padding: 30rpx;
+    background:rgba(255, 255, 255, 1);
+    border-radius:16rpx;
+    line-height: 40rpx;
+}
+.remarks text {
+    margin-right: 40rpx;
+    font-size: 28rpx;
+}
+.remarks view {
+    width: 478rpx;
+    font-size: 28rpx;
+    color: #666666;
+    word-wrap: break-word;
+}
+
+.orderInfo{
+    background:rgba(255,255,255,1);
+    border-radius:16rpx;
+}
+.orderInfo .title {
+    padding: 30rpx;
+    border-bottom: 2rpx solid rgba(242,242,242,1);
+}
+.orderInfo .title text {
+    display: block;
+    width: 86px;
+    border-left: 4rpx solid #FF0662;
+    text-align: center;
+    color: #333333;
+    font-size: 28rpx;
+}
+.orderInfo .list {
+    padding: 30rpx;
+    padding-bottom: 64rpx;
+}
+.orderInfo .list .everyList{
+    display: flex;
+    justify-content: space-between;
+    color: #333333;
+    font-size: 28rpx;
+    margin-bottom: 20rpx;
+}
+.bottom{
+    margin-top: 60rpx;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.bottom .consult{
+    background: #F4F4F4;
+    color: #333333;
+    font-size: 32rpx;
+}
+.bottom .btn {
+    display: flex;
+    width: 670rpx;
+    margin-top: 18rpx;
+    padding: 0 40rpx;
+    justify-content: center;
+    align-items: center;
+}
+.bottom .one {
+    width:520rpx;
+    height:96rpx;
+    margin: 0 auto;
+    background:linear-gradient(180deg,rgba(250,57,135,1) 0%,rgba(250,16,96,1) 100%);
+    box-shadow:0px 6rpx 16rpx 0px rgba(255,15,102,0.47);
+    border-radius:48rpx;
+    text-align: center;
+    line-height: 96rpx;
+    color: #FFFFFF;
+    font-size: 36rpx;
+}
+.bottom .two {
+    width: 312rpx;
+    height: 96rpx;
+    margin: 0 auto;
+    background: linear-gradient(180deg, rgba(250, 57, 135, 1) 0%, rgba(250, 16, 96, 1) 100%);
+    box-shadow: 0px 6rpx 16rpx 0px rgba(255, 15, 102, 0.47);
+    border-radius: 48rpx;
+    text-align: center;
+    line-height: 96rpx;
+    color: #FFFFFF;
+    font-size: 36rpx;
+}
+.bottom .two:first-child {
+    background:rgba(255, 255, 255, 1);
+    box-shadow:0px 6rpx 16rpx 0px rgba(0, 0, 0, 0.1);
+    color: #333;
+}
+
+/* 预览 */
+.preview {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.preview .img {
+    display: flex;
+    width: 682rpx;
+    height: 481rpx;
+    margin-bottom: 60rpx;
+    box-shadow: 0px 0px 10rpx 0px rgba(0, 0, 0, 0.21);
+    border-radius: 16rpx;
+    border: 6rpx solid rgba(255, 255, 255, 1);
+}
+
+.preview .img > image {
+    display: block;
+    width: 50%;
+    height: 100%;
+    background: #fff;
+    transition: all 1.5s ease-in-out;
+}
+
+.preview .img > view {
+    display: block;
+    width: 50%;
+    height: 100%;
+    background: #fff;
+    transition: all 1.5s ease-in-out;
+}
+
+.preview .img image:first-child {
+    transform-style:preserve-3d; /* 开启3d转换效果 */
+    transform-origin:100% center; /* 设置基点位置 */
+    perspective: 1000; /* 定义3D元素距视图的距离 */
+}
+
+.preview .img image:last-child {
+    transform-style:preserve-3d; /* 开启3d转换效果 */
+    transform-origin:0% center; /* 设置基点位置 */
+    perspective: 1000; /* 定义3D元素距视图的距离 */
+}
+
+.next {
+    transform:perspective(2000rpx) rotateY(-180deg);
+}
+
+.prev {
+    transform:perspective(2000rpx) rotateY(180deg);
+}
+
+.preview .fail {
+    width: 76rpx;
+    height: 76rpx;
+    position: absolute;
+    bottom: -100px;
+}
+
+.previewBox {
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.21);
+    border-radius: 8px;
+    border: 3px solid rgba(255, 255, 255, 1);
+}
+
+.previewBox .everyPage .shu {
+    writing-mode:vertical-lr;
+  }
+
+.previewBox .everyPage {
+    width: 360rpx;
+    height: 530rpx;
+    overflow: hidden;
+    position: relative;
+    background: white;
+}
+
+.previewBox .line {
+    width: 1rpx;
+    height: 265px;
+    border-left: 1rpx solid rgba(0, 0, 0, 0.21);
+}
+
+/* ------------------------------------------------------------ */
+.page_box {
+    margin-bottom: 60rpx;
+}
+.page_nowOne {
+    margin-left: 50%;
+}
+.page_first,
+.page_last {
+    width: 340rpx;
+    height: 480rpx;
+}
+.page_first {
+    display: flex;
+    box-sizing: border-box;
+    padding: 0 20rpx;
+    text-align: center;
+    align-items: center;
+}
+
+.page_last {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.photo_item {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    box-sizing: border-box;
+    border: 1rpx solid #eee;
+}
+
+.photo_item image {
+    width: 100%;
+    height: 100%;
+}
+
+.left,
+.right {
+    transform-style: preserve-3d;
+    /* 开启3d转换效果 */
+    transform-origin: 0% center;
+    /* 设置基点位置 */
+    perspective: 1000;
+    /* 定义3D元素距视图的距离 */
+    transition: all 1.5s ease-in-out;
+}
+
+.left {
+    transform: perspective(2000rpx) rotateY(-180deg);
+}
+
+.right {
+    transform: perspective(2000rpx) rotateY(0deg);
+}
+
+.zindex1 {
+    z-index: 1;
+}
+
+.zindex2 {
+    z-index: 2;
+}
+
+.zindex3 {
+    z-index: 3;
+}
+
+.zindex4 {
+    z-index: 4;
+}
+
+button {
+    position: relative;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+    box-sizing: none;
+    font-size: none;
+    text-align: none;
+    text-decoration: none;
+    line-height: 38rpx;
+    border-radius: none;
+    -webkit-tap-highlight-color: none;
+    overflow: auto;
+    background: #ffffff;
+}

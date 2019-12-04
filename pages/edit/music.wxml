@@ -1,0 +1,19 @@
+<view class="box">
+
+    <view class="everyMusic noMusic" bindtap="noneMusic">
+        <text class="name">无音乐</text>
+        <image wx:if="{{selectMusicId == null}}" src="../../resources/imgs/select.png" />
+    </view>
+
+    <view class="everyMusic" wx:for="{{musicList}}" wx:key="{{index}}" bindtap="selectMusic" data-name="{{item}}">
+        <text class="name">{{item.name}}</text>
+       
+       <view >
+            <image class="play" wx:if="{{ selectMusicId  === item.id}}" src="../../resources/imgs/play.gif" />
+            <image wx:if="{{ selectMusicId  === item.id}}" src="../../resources/imgs/select.png" />
+        </view>
+    </view>
+
+    <button class="btn" bindtap="finishSelect">确认</button>
+    
+</view>

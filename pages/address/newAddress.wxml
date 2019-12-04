@@ -1,0 +1,39 @@
+<!--pages/personalCenter/address/newAddress.wxml-->
+<view class="box">
+    <view class="newAddress">
+
+        <view class="everyInput">
+            <text class="name">姓名</text>
+
+            <input class="weui-input" placeholder-style="color:#999999" placeholder="请填写收货人姓名" value="{{name}}" data-variable="name" bindblur="saveInput" />
+        </view>
+
+        <view class="everyInput">
+            <text class="name">联系电话</text>
+            <input class="weui-input" type="number" placeholder-style="color:#999999" placeholder="请填写收货人联系号码" value="{{mobile}}" minlength="11" maxlength="11" data-variable="mobile" bindblur="saveInput"/>
+        </view>
+
+        <view class="everyInput">
+            <text class="name">所在地区</text>
+            <picker mode="region" bindchange="bindAddressChange" value="{{addressArr}}" style="padding: 30rpx 0;">
+                <text wx:if="{{addressArr.length == 0 }}" class="weui-input" style="color: #999999;">所在地区</text>
+                <view class="weui-input">{{addressArr[0]}} {{addressArr[1]}} {{addressArr[2]}}</view>
+            </picker>
+        </view>
+
+        <view class="everyInput detailed">
+            <text class="name">详细地址</text>
+
+            <textarea class="textarea weui-input" placeholder-style="color:#999999" placeholder="街道，楼牌号等" name="textarea" value="{{gps_addr}}" maxlength='-1' data-variable="gps_addr" bindblur="saveInput"/>
+        </view>
+
+        <view class="switch">
+            <text class="switch_text">设为默认地址</text>
+            <switch class="switchBtn" checked="{{switchChecked}}" bindchange="switchChange"/>
+        </view>
+    
+    </view>
+
+</view>
+
+<button class="btn" bindtap="saveNewAddress">保存新地址</button>

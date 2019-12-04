@@ -1,0 +1,190 @@
+page {
+  position: relative;
+  /* padding-bottom: 68rpx; */
+}
+
+.container {
+  padding-bottom: 30rpx;
+}
+
+
+.b {
+  width: 300px;
+  height: 150px;
+}
+.b image {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+
+/* 顶部轮播图 */
+.swiper_box {
+  position: relative;
+  padding: 30rpx;
+  height: 336rpx;
+}
+.swiper_box .swiper {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  border-radius: 22rpx;
+}
+.slide-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 22rpx;
+}
+.swiper_dot {
+  position: absolute;
+  bottom: 40rpx;
+  left: 0;
+  /* left: 50%; */
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  /* transform: translate(-50%, -50%); */
+}
+.dot_every {
+  display: block;
+  width: 12rpx;
+  height: 12rpx;
+  margin-right: 10rpx;
+  background: #fff;
+  border-radius: 10rpx;
+}
+.dot_every:last-child {
+  margin-right: 0;
+}
+.dot_active {
+  width: 50rpx;
+}
+.swiper_bottom {
+  position: absolute;
+  left: 30rpx;
+  bottom: 0;
+  width: 690rpx;
+  height: 84rpx;
+  background: rgba(0, 0, 0, 0.99);
+  opacity: 0.21;
+  filter: blur(28rpx);
+  z-index: -1;
+}
+
+.hotText {
+  width: 100%;
+  text-align: center;
+  font-size: 36rpx;
+  font-weight: 600;
+  color: rgba(255, 6, 98, 1);
+  margin-top: 44rpx;
+}
+
+/* 热门推荐 */
+.recommend-block {
+  width: 100%;
+  height: 530rpx;
+  margin-top: 40rpx;
+}
+.recommend-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  overflow: unset;
+}
+.recommend-info {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 30rpx;
+  transition: all .3s ease-in 0s;
+  transform: scale(.8);
+}
+.recommend-info > image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+}
+.recommend-info .layer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 70rpx;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.51) 100%);
+  z-index: 2;
+}
+.recommend-info text {
+  position: absolute;
+  bottom: 10rpx;
+  display: block;
+  width: 100%;
+  font-size: 36rpx;
+  color: #fff;
+  text-align: center;
+  z-index: 5;
+}
+.recommend-item:last-child .recommend-info {
+  display: flex;
+  height: auto;
+  border-radius: 0;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.recommend-item:last-child .recommend-info image {
+  width: 84rpx;
+  height: 84rpx;
+  margin: 0 auto;
+  margin-bottom: 30rpx;
+}
+.recommend-item:last-child .recommend-info view {
+  width: 0;
+  height: 0;
+  z-index: 0;
+}
+.recommend-item:last-child .recommend-info text {
+  position: static;
+  font-size: 28rpx;
+  color: #666666;
+  text-align: center;
+}
+.isIphoneX {
+  height: 564rpx!important;
+}
+.active {
+  transform: scale(1);
+}
+/* .active text { */
+  /* bottom: 20rpx; */
+  /* font-size: 40rpx; */
+/* } */
+
+
+.btn {
+  width: 460rpx;
+  height: 96rpx;
+  margin-top: 56rpx;
+  background: linear-gradient(180deg, rgba(250, 57, 135, 1) 0%, rgba(250, 16, 96, 1) 100%);
+  border-radius: 48rpx;
+  font-size: 36rpx;
+  color: rgba(255, 255, 255, 1);
+  line-height: 96rpx;
+}
+
+.tabbar_bottom {
+  position: fixed;
+  left: 0;
+  bottom: -80rpx;
+  width: 750rpx;
+  height: 84rpx;
+  background: rgba(0, 0, 0, 0.99);
+  opacity: 0.21;
+  filter: blur(28rpx);
+  z-index: -1;
+}

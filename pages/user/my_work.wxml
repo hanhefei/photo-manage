@@ -1,0 +1,30 @@
+<view class="box">
+    <view class="everyBox" wx:for="{{my_works}}" wx:key="index">
+        <view class="image" data-name="{{item.id}}" bindtap="toPreview">
+            <image src="{{item.end}}" />
+            <view class="shu"></view>
+            <image src="{{item.start}}" />
+        </view>
+        <view class="bottom">
+            <view class="title">
+                <view wx:if="{{isEdit && nowIndex == index}}" class="everyTitle">
+                    <input class="input" wx:if="{{nowIndex === index}}" type="text" placeholder-style="color: #999;" maxlength="20" value="{{changeName}}" auto-focus bindinput="saveInput" />
+                    <image class="take" wx:if="{{nowIndex === index }}" data-name="{{item.id}}" bindtap="finish" src="../../resources/imgs/wancheng.png" />
+                </view>
+                <view wx:if="{{!isEdit || nowIndex != index}}" class="everyTitle">
+                    <text>{{item.name}}</text>
+                    <image class="take" data-name="{{index}}" bindtap="edit" src="../../resources/imgs/bianji.png" />
+                </view>
+            </view>
+            <view class="text">
+                <view class="handleTxt">
+                    <view class="left" data-name="{{item.id}}" catchtap="toEdit">编辑</view>
+                    <view class="left" data-name="{{item.id}}" bindtap="del">删除</view>
+                </view>
+                <view class="right" wx:if="{{item.done+1 == item.count}}">已完成</view>
+                <view class="right" style="color: rgba(237, 36, 113, 1);" wx:else>{{item.done+1}}/{{item.count}}</view>
+            </view>
+        </view>
+    </view>
+    <tips wx:if="{{my_works.length < 0 || my_works.length == 0}}"></tips>
+</view>

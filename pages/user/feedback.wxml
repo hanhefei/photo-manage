@@ -1,0 +1,22 @@
+<view class="box">
+
+    <view class="input">
+
+        <textarea class="textarea" placeholder-style="color:#666666" placeholder="请输入您想反馈的问题" name="textarea" maxlength="-1" bindblur="saveInput"/>
+
+        <text>上传图片</text>
+
+        <view class="upload">
+
+             <view class="imgList" wx:for="{{wareDescImg}}" wx:key="index" wx:if="{{wareDescImg.length > 0}}">
+                    <image class="everyImg" mode="aspectFill" src="{{item.url}}"></image>
+
+                    <image class="delImg" src="../../resources/imgs/delImg.png" data-index="{{index}}" bindtap="deleteThisImg"></image>
+            </view>
+
+            <image class="addImg" src="../../resources/imgs/uploadImg.png" wx:if="{{wareDescImg.length < 3}}" bindtap="updateImg"></image>
+        </view>
+    </view>
+
+    <button bindtap="Submission">确认提交</button>
+</view>

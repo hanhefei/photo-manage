@@ -1,0 +1,16 @@
+<view class="box">
+    <view class="list {{item.is_default == 1 && !backSubmit ? 'isDefault' : ''}} {{selectId == item.address_id &&  backSubmit ? 'isDefault' : ''}}" wx:for="{{address_list}}" wx:key="index" data-id="{{item.address_id}}" bindtap="{{backSubmit ? 'selectThis' : ''}}">
+        <view class="info">
+            <view class="topInfo">
+                <view class="name">{{item.name}}</view>
+                <view class="tel">{{item.mobile}}</view>
+            </view>
+            <view class="addree">{{item.address}} {{item.gps_addr}}</view>
+        </view>    
+        <view class="edit" data-idx="{{index}}"  bindtap="editAddress" wx:if="{{!backSubmit}}">编辑</view>    
+    </view>
+
+    <tips wx:if="{{address_list.length < 0 || address_list.length == 0}}"></tips>
+</view>
+
+<button class="btn" bindtap="newAddress">新增收货地址</button>

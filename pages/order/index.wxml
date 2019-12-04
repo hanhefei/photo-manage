@@ -1,0 +1,51 @@
+<view class="box">
+    <view class="nav">
+        <view class="everyNav {{nowId === item.id ? 'cur' : ''}}" 
+        wx:for="{{nav}}" 
+        wx:key="index"
+        bindtap="changIndex"
+        data-id="{{item.id}}">{{item.text}}</view>
+    </view>
+
+    <view class="everyOrder" wx:for="{{orderList}}" wx:key="index">
+        <view class="orderInfo" data-order-id="{{item.id}}" bindtap="toOrderInfo">
+            <view class="orderNumber">订单号：{{item.order_sn}}</view>
+            <view class="isPay">
+                {{item.status == 0 ? '待付款' : ''}}
+                {{item.status == 1 ? '待发货' : ''}}
+                {{item.status == 2 ? '已发货' : ''}}
+                {{item.status == 3 ? '待收货' : ''}}
+                {{item.status == 4 ? '已完成' : ''}}
+                {{item.status == 6 ? '已取消' : ''}}
+                <image style="width:12rpx;height: 22rpx" src="/resources/imgs/moreselect.png" />
+            </view>
+        </view>
+        
+        <view class="goods" data-order-id="{{item.id}}" bindtap="toOrderInfo">
+            <view class="img">
+            <image src="{{item.photo}}" />
+            </view>
+            <view class="text">
+                <text class="name">{{item.name}}</text>
+                <text class="time">{{item.addtime}}</text>
+                <text class="money">￥{{item.price}}</text>
+            </view>
+        </view>
+        
+        <view class="btn" wx:if="{{item.status == 0}}">
+            <view class="left" data-order-id="{{item.id}}" bindtap="cancel">取消订单</view>
+            <view class="right" data-order-id="{{item.id}}" bindtap="pay">支付订单</view>
+        </view>
+        
+        <view class="btn" wx:if="{{item.status == 2 ||  item.status == 3}}">
+            <view class="left" data-order-id="{{item.id}}" bindtap="toLogisticsIfon">查看物流</view>
+            <view class="right" data-order-id="{{item.id}}" bindtap="give">确认收货</view>
+        </view>
+        
+        <view class="btn" wx:if="{{item.status == 6}}">
+            <view class="right" data-order-id="{{item.id}}" bindtap="delete">删除订单</view>
+        </view>
+    </view>
+
+    <tips wx:if="{{orderList.length < 0 || orderList.length == 0}}"></tips>
+</view>

@@ -1,0 +1,4 @@
+<view class="cmpTips">
+    <image src="/resources/imgs/zwsj.png" />
+    <text>暂无数据</text>
+</view>

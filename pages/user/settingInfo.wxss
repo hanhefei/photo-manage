@@ -1,0 +1,23 @@
+.container {
+    width: 610rpx;
+    margin: 40rpx;
+    padding: 30rpx;
+    background: rgba(255,255,255,1);
+    border-radius: 16rpx;
+}
+.phone {
+    display: none;
+    font-size: 32rpx;
+    word-break: break-all;
+}
+.txt {
+    display: none;
+    line-height: 40rpx;
+    font-size: 28rpx;
+    color: #333;
+    word-break: break-all;
+}
+
+.show {
+    display: block;
+}

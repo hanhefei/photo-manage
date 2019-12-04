@@ -1,0 +1,178 @@
+page {
+    background: white;
+}
+
+.box {
+    display: flex;
+    justify-content: center;
+}
+
+.preview {
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.21);
+    border-radius: 8px;
+    border: 3px solid rgba(255, 255, 255, 1);
+}
+
+.preview .everyPage .shu {
+    writing-mode:vertical-lr;
+  }
+
+.preview .everyPage {
+    width: 360rpx;
+    height: 510rpx;
+    overflow: hidden;
+    position: relative;
+}
+
+.preview .line {
+    width: 1rpx;
+    height: 510rpx;
+    border-left: 1rpx solid rgba(0, 0, 0, 0.51);
+}
+
+.box .btn {
+    width: 100%;
+    position: absolute;
+    bottom: 108rpx;
+}
+
+.box .btn button {
+    width: 520rpx;
+    height: 96rpx;
+    background: linear-gradient(180deg, rgba(250, 57, 135, 1) 0%, rgba(250, 16, 96, 1) 100%);
+    box-shadow: 0px 6rpx 16rpx 0px rgba(255, 15, 102, 0.47);
+    border-radius: 48rpx;
+    color: #FFFFFF;
+    font-size: 36rpx;
+}
+
+/* 制作页面 */
+.make {
+    position: relative;
+    padding: 40rpx;
+}
+
+.make .option {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.make .option .everyOption {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 60rpx;
+}
+
+.make .option .everyOption .title {
+    margin-right: 40rpx;
+    color: #333333;
+    font-size: 28rpx;
+}
+
+.make .option .everyOption .product {
+    width: 574rpx;
+    display: flex;
+    flex-wrap:  wrap;
+    justify-content: space-between;
+}
+
+.make .option .everyOption .btn {
+    display: flex;
+    width: 190rpx;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.make .option .everyOption .btn image {
+    width: 48rpx;
+    height: 48rpx;
+}
+
+.everybox {
+    display: inline-block;
+    width: 240rpx;
+}
+
+.everybox:last-child {
+    margin-right: 0;
+}
+
+.make .option .everyOption .product .everyInfo {
+    width: 240rpx;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 30rpx;
+}
+
+.make .option .everyOption .product .everyInfo .choose {
+    width: 86px;
+    height: 32px;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    text-align: center;
+    line-height: 64rpx;
+    margin-top: 20rpx;
+    color: #999999;
+    font-size: 28rpx;
+}
+
+.make .option .everyOption .product .everyInfo .cur {
+    border: 1px solid rgba(255, 6, 98, 1);
+    color: #FF0662;
+}
+
+.make .option .everyOption .product .everyInfo image {
+    width: 100%;
+    height: 240rpx;
+}
+
+.make .option .everyOption .product .everyInfo .parameter {
+    display: flex;
+    width: 100%;
+    margin-top: 20rpx;
+    flex-direction: column;
+}
+
+.make .option .everyOption .product .everyInfo .parameter text {
+    color: #333333;
+    font-size: 28rpx;
+    width: 100%;
+    overflow: hidden;
+    text-align: center;
+}
+
+.bottom {
+    margin-top: 100rpx;
+    width: 100%;
+}
+
+.bottom .btn {
+    width: 260px;
+    height: 48px;
+    background: linear-gradient(180deg, rgba(250, 57, 135, 1) 0%, rgba(250, 16, 96, 1) 100%);
+    box-shadow: 0px 3px 8px 0px rgba(255, 15, 102, 0.47);
+    border-radius: 24px;
+    margin-top: 20rpx;
+    color: #FFFFFF;
+    font-size: 36rpx;
+}
+
+.bottom .money {
+    width: 100%;
+    text-align: center;
+    color: #333333;
+    font-size: 36rpx;
+}
+
+.bottom .money text {
+    color: #FF0662;
+    font-size: 48rpx;
+}

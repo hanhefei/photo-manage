@@ -1,0 +1,112 @@
+<!-- pages/home/Templates/select.wxml -->
+<view class="box">
+    <view class="everyBox" wx:for="{{tmpPhotoNum / 2}}" wx:key="index">
+        <view class="everyImg" bindtap="preview" data-index="{{index}}">
+            <!-- 左边 -->
+            <view class="everySmallImg">
+                <view wx:for="{{index == 0 ? tmpPhoto[tmpPhoto.length -1]:tmpPhoto[index*2 -1]}}" wx:key="index" wx:if="{{item.type === 'bg'}}" style="left:{{item.x*referWidth}}px ;top:{{item.y*referHeight}}px; width: {{item.width*referWidth}}px; height: {{item.height*referHeight}}px; transform:rotate({{item.rotate}}deg); position: absolute;">
+                    <image src="{{item.url}}" style="width:100%;height: 100%; position: absolute;left: 0;top: 0;" />
+                </view>
+                <view wx:for="{{index == 0 ? tmpPhoto[tmpPhoto.length -1]:tmpPhoto[index*2 -1]}}" wx:key="index" wx:if="{{item.type === 'img'}}" style="left:{{item.x*referWidth}}px ;top:{{item.y*referHeight}}px; width: {{item.width*referWidth}}px; height: {{item.height*referHeight}}px; transform:rotate({{item.rotate}}deg); position: absolute;">
+                    <image src="{{item.url}}" style="width:100%;height: 100%; position: absolute;left: 0;top: 0;" />
+                </view>
+                <view wx:for="{{index == 0 ? tmpPhoto[tmpPhoto.length -1]:tmpPhoto[index*2 -1]}}" wx:key="index" wx:if="{{item.type === 'frame'}}" style="left:{{item.x*referWidth}}px; top:{{item.y*referHeight}}px; width:{{item.width*referWidth}}px; height:{{item.height*referHeight}}px;position: absolute;">
+                    <view style="-webkit-clip-path:{{item.val}}; position: absolute; width: 100%; height: 100%;">
+                        <image wx:if="{{item.url}}" src="{{item.url}}" style="width:{{item.imgWidth*referWidth}}px; height:{{item.imgHeight*referHeight}}px;left:{{item.left*referWidth}}px;top:{{item.top*referHeight}}px;transform:rotate({{item.rotate}}deg);filter:brightness({{item.brightness}});position: absolute;" />
+                        <image wx:if="{{!item.url}}" style="width:100%; height:100%;" mode="aspectFill" src="../../resources/imgs/frameBg.png" />
+                    </view>
+                </view>
+                <view wx:for="{{index == 0 ? tmpPhoto[tmpPhoto.length -1]:tmpPhoto[index*2 -1]}}" wx:key="index" wx:if="{{item.type === 'paster'}}" style="left:{{item.x*referWidth}}px ;top:{{item.y*referHeight}}px; width: {{item.width*referWidth}}px; height: {{item.height*referHeight}}px; transform:rotate({{item.rotate}}deg); position: absolute;">
+                    <image src="{{item.url}}" style="width:100%;height: 100%; position: absolute;left: 0;top: 0;" />
+                </view>
+                <view wx:for="{{index == 0 ? tmpPhoto[tmpPhoto.length -1]:tmpPhoto[index*2 -1]}}" wx:key="index" class="{{item.sort == 'shu'?'shu':''}}" wx:if="{{item.type === 'text'}}" style="left:{{item.x*referWidth}}px ;top:{{item.y*referHeight}}px; width: {{item.width*referWidth}}px; height: {{item.height*referHeight}}px; transform:rotate({{item.rotate}}deg);color:{{item.color}}; font-size:{{item.fontSize*referWidth}}px;font-family:{{item.family}};  position: absolute;">
+                    {{item.content?item.content:'请输入文字'}}
+                </view>
+            </view>
+            <!-- 分割线 -->
+            <view class="line"></view>
+            <!--  -->
+            <view class="everySmallImg">
+                <view wx:for="{{index == 0 ? tmpPhoto[0]:tmpPhoto[index*2]}}" wx:key="index" wx:if="{{item.type === 'bg'}}" style="left:{{item.x*referWidth}}px ;top:{{item.y*referHeight}}px; width: {{item.width*referWidth}}px; height: {{item.height*referHeight}}px; transform:rotate({{item.rotate}}deg); position: absolute;">
+                    <image src="{{item.url}}" style="width:100%;height: 100%; position: absolute;left: 0;top: 0;" />
+                </view>
+                <view wx:for="{{index == 0 ? tmpPhoto[0]:tmpPhoto[index*2]}}" wx:key="index" wx:if="{{item.type === 'img'}}" style="left:{{item.x*referWidth}}px ;top:{{item.y*referHeight}}px; width: {{item.width*referWidth}}px; height: {{item.height*referHeight}}px; transform:rotate({{item.rotate}}deg); position: absolute;">
+                    <image src="{{item.url}}" style="width:100%;height: 100%; position: absolute;left: 0;top: 0;" />
+                </view>
+                <view wx:for="{{index == 0 ? tmpPhoto[0]:tmpPhoto[index*2]}}" wx:key="index" wx:if="{{item.type === 'frame'}}" style="left:{{item.x*referWidth}}px; top:{{item.y*referHeight}}px; width:{{item.width*referWidth}}px; height:{{item.height*referHeight}}px;position: absolute;">
+                    <view style="-webkit-clip-path:{{item.val}}; position: absolute; width: 100%; height: 100%;">
+                        <image wx:if="{{item.url}}" src="{{item.url}}" style="width:{{item.imgWidth*referWidth}}px; height:{{item.imgHeight*referHeight}}px;left:{{item.left*referWidth}}px;top:{{item.top*referHeight}}px;transform:rotate({{item.rotate}}deg);filter:brightness({{item.brightness}});position: absolute;" />
+                        <image wx:if="{{!item.url}}" style="width:100%; height:100%;" mode="aspectFill" src="../../resources/imgs/frameBg.png" />
+                    </view>
+                </view>
+                <view wx:for="{{index == 0 ? tmpPhoto[0]:tmpPhoto[index*2]}}" wx:key="index" wx:if="{{item.type === 'paster'}}" style="left:{{item.x*referWidth}}px ;top:{{item.y*referHeight}}px; width: {{item.width*referWidth}}px; height: {{item.height*referHeight}}px; transform:rotate({{item.rotate}}deg); position: absolute;">
+                    <image src="{{item.url}}" style="width:100%;height: 100%; position: absolute;left: 0;top: 0;" />
+                </view>
+                <view wx:for="{{index == 0 ? tmpPhoto[0]:tmpPhoto[index*2]}}" wx:key="index" class="{{item.sort === 'shu'?'shu':''}}" wx:if="{{item.type === 'text'}}" style="left:{{item.x*referWidth}}px ;top:{{item.y*referHeight}}px; width: {{item.width*referWidth}}px; height: {{item.height*referHeight}}px; transform:rotate({{item.rotate}}deg);color:{{item.color}}; font-size:{{item.fontSize*referWidth}}px;font-family:{{item.family}};  position: absolute;">
+                    {{item.content?item.content:'请输入文字'}}
+                </view>
+            </view>
+        </view>
+        <view class="text">
+            {{index == 0 ? '封底' :  index * 2 - 1}}-{{index == 0 ? '封面' :  index * 2}}
+        </view>
+    </view>
+</view>
+<view class="oneBtn" wx:if="{{!Showfree}}">
+    <button class="left" open-type="share" data-id="{{tmpId}}">立即分享</button>
+    <button class="right" bindtap="changeFree">开始制作</button>
+</view>
+<view class="twoBtn" wx:else>
+    <button class="left" bindtap="toImportPicture">批量导入图片</button>
+    <button class="right" bindtap="toEdit">逐页添加图片</button>
+</view>
+<!-- 预览 -->
+<view class="preview" wx:if="{{previewIsShow}}">
+    <view class="previewBox">
+        <!-- 左边 -->
+        <view class="everyPage">
+            <view wx:for="{{previewIdx == 0 ? tmpPhoto[tmpPhoto.length -1]:tmpPhoto[previewIdx*2 -1]}}" wx:key="index" wx:if="{{item.type === 'bg'}}" style="left:{{item.x*width}}px ;top:{{item.y*height}}px; width: {{item.width*width}}px; height: {{item.height*height}}px; transform:rotate({{item.rotate}}deg); position: absolute;">
+                <image src="{{item.url}}" style="width:100%;height: 100%; position: absolute;left: 0;top: 0;" />
+            </view>
+            <view wx:for="{{previewIdx == 0 ? tmpPhoto[tmpPhoto.length -1]:tmpPhoto[previewIdx*2 -1]}}" wx:key="index" wx:if="{{item.type === 'img'}}" style="left:{{item.x*width}}px ;top:{{item.y*height}}px; width: {{item.width*width}}px; height: {{item.height*height}}px; transform:rotate({{item.rotate}}deg); position: absolute;">
+                <image src="{{item.url}}" style="width:100%;height: 100%; position: absolute;left: 0;top: 0;" />
+            </view>
+            <view wx:for="{{previewIdx == 0 ? tmpPhoto[tmpPhoto.length -1]:tmpPhoto[previewIdx*2 -1]}}" wx:key="index" wx:if="{{item.type === 'frame'}}" style="left:{{item.x*width}}px; top:{{item.y*height}}px; width:{{item.width*width}}px; height:{{item.height*height}}px;position: absolute;">
+                <view style="-webkit-clip-path:{{item.val}}; position: absolute; width: 100%; height: 100%;">
+                    <image wx:if="{{item.url}}" src="{{item.url}}" style="width:{{item.imgWidth*width}}px; height:{{item.imgHeight*height}}px;left:{{item.left*width}}px;top:{{item.top*height}}px;transform:rotate({{item.rotate}}deg);filter:brightness({{item.brightness}});position: absolute;" />
+                    <image wx:if="{{!item.url}}" style="width:100%; height:100%;" mode="aspectFill" src="../../resources/imgs/frameBg.png" />
+                </view>
+            </view>
+            <view wx:for="{{previewIdx == 0 ? tmpPhoto[tmpPhoto.length -1]:tmpPhoto[previewIdx*2 -1]}}" wx:key="index" wx:if="{{item.type === 'paster'}}" style="left:{{item.x*width}}px ;top:{{item.y*height}}px; width: {{item.width*width}}px; height: {{item.height*height}}px; transform:rotate({{item.rotate}}deg); position: absolute;">
+                <image src="{{item.url}}" style="width:100%;height: 100%; position: absolute;left: 0;top: 0;" />
+            </view>
+            <view wx:for="{{previewIdx == 0 ? tmpPhoto[tmpPhoto.length -1]:tmpPhoto[previewIdx*2 -1]}}" wx:key="index" class="{{item.sort == 'shu'?'shu':''}}" wx:if="{{item.type === 'text'}}" style="left:{{item.x*width}}px ;top:{{item.y*height}}px; width: {{item.width*width}}px; height: {{item.height*height}}px; transform:rotate({{item.rotate}}deg);color:{{item.color}}; font-size:{{item.fontSize*width}}px;font-family:{{item.family}};  position: absolute;">
+                {{item.content?item.content:'请输入文字'}}
+            </view>
+        </view>
+        <!-- 分割线 -->
+        <view class="line"></view>
+        <!-- 封面 -->
+        <view class="everyPage">
+            <view wx:for="{{previewIdx == 0 ? tmpPhoto[0]:tmpPhoto[previewIdx*2]}}" wx:key="index" wx:if="{{item.type === 'bg'}}" style="left:{{item.x*width}}px ;top:{{item.y*height}}px; width: {{item.width*width}}px; height: {{item.height*height}}px; transform:rotate({{item.rotate}}deg); position: absolute;">
+                <image src="{{item.url}}" style="width:100%;height: 100%; position: absolute;left: 0;top: 0;" />
+            </view>
+            <view wx:for="{{previewIdx == 0 ? tmpPhoto[0]:tmpPhoto[previewIdx*2]}}" wx:key="index" wx:if="{{item.type === 'img'}}" style="left:{{item.x*width}}px ;top:{{item.y*height}}px; width: {{item.width*width}}px; height: {{item.height*height}}px; transform:rotate({{item.rotate}}deg); position: absolute;">
+                <image src="{{item.url}}" style="width:100%;height: 100%; position: absolute;left: 0;top: 0;" />
+            </view>
+            <view wx:for="{{previewIdx == 0 ? tmpPhoto[0]:tmpPhoto[previewIdx*2]}}" wx:key="index" wx:if="{{item.type === 'frame'}}" style="left:{{item.x*width}}px; top:{{item.y*height}}px; width:{{item.width*width}}px; height:{{item.height*height}}px;position: absolute;">
+                <view style="-webkit-clip-path:{{item.val}}; position: absolute; width: 100%; height: 100%;">
+                    <image wx:if="{{item.url}}" src="{{item.url}}" style="width:{{item.imgWidth*width}}px; height:{{item.imgHeight*height}}px;left:{{item.left*width}}px;top:{{item.top*height}}px;transform:rotate({{item.rotate}}deg);filter:brightness({{item.brightness}});position: absolute;" />
+                    <image wx:if="{{!item.url}}" style="width:100%; height:100%;" mode="aspectFill" src="../../resources/imgs/frameBg.png" />
+                </view>
+            </view>
+            <view wx:for="{{previewIdx == 0 ? tmpPhoto[0]:tmpPhoto[previewIdx*2]}}" wx:key="index" wx:if="{{item.type === 'paster'}}" style="left:{{item.x*width}}px ;top:{{item.y*height}}px; width: {{item.width*width}}px; height: {{item.height*height}}px; transform:rotate({{item.rotate}}deg); position: absolute;">
+                <image src="{{item.url}}" style="width:100%;height: 100%; position: absolute;left: 0;top: 0;" />
+            </view>
+            <view wx:for="{{previewIdx == 0 ? tmpPhoto[0]:tmpPhoto[previewIdx*2]}}" wx:key="index" class="{{item.sort === 'shu'?'shu':''}}" wx:if="{{item.type === 'text'}}" style="left:{{item.x*width}}px ;top:{{item.y*height}}px; width: {{item.width*width}}px; height: {{item.height*height}}px; transform:rotate({{item.rotate}}deg);color:{{item.color}}; font-size:{{item.fontSize*width}}px;font-family:{{item.family}};  position: absolute;">
+                {{item.content?item.content:'请输入文字'}}
+            </view>
+        </view>
+        <image class="fail" bindtap="closePreview" src="/resources/imgs/fail.png" />
+    </view>
+</view>

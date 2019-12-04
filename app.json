@@ -1,0 +1,85 @@
+{
+  
+  "pages": [
+    "pages/index/index",
+
+    "pages/details/index",
+
+    "pages/tmp/alltmp",
+
+    "pages/tmp/tmplist",
+
+    "pages/tmp/import_photo",
+
+    "pages/edit/index",
+
+    "pages/edit/music",
+
+    "pages/prev/index",
+    
+    "pages/prev/album",
+    
+    "pages/prev/photo_book",
+
+    "pages/user/index",
+
+    "pages/user/my_work",
+
+    "pages/user/setting",
+
+    "pages/user/accountSetting",
+
+    "pages/user/feedback",
+
+    "pages/user/settingInfo",
+
+    "pages/order/index",
+    
+    "pages/order/submit",
+    
+    "pages/order/orderInfo",
+
+    "pages/order/logisticsIfon",
+
+    "pages/address/index",
+    
+    "pages/address/newAddress",
+    
+    "pages/address/editAddress"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "navigationBarTitleText": "",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#D4D4D4",
+    "selectedColor": "#666666",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "white",
+    "list": [
+        {
+            "pagePath": "pages/index/index",
+            "text": "首页",
+            "iconPath": "./resources/imgs/index.png",
+            "selectedIconPath": "./resources/imgs/indexActive.png"
+        },
+        {
+            "pagePath": "pages/user/index",
+            "text": "个人中心",
+            "iconPath": "./resources/imgs/user.png",
+            "selectedIconPath": "./resources/imgs/userActive.png"
+        }
+    ]
+  },
+  "usingComponents": {
+    "tips": "./components/tips/tips"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示" 
+    }
+  },
+  "sitemapLocation": "sitemap.json"
+}

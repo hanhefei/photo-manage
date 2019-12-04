@@ -1,0 +1,326 @@
+<import src="../../template/compress/compress.wxml"/>
+
+<view class="box">
+
+    <painter customStyle='margin-left:0;' palette="{{templateStart}}" bind:imgOK="onImgOK1" wx:if="{{templateStart}}" />
+
+    <painter customStyle='margin-left:0;' palette="{{templateEnd}}" bind:imgOK="onImgOK2" wx:if="{{nowPage == allPicture.length - 1 && !templateStart}}" />
+    
+    <painter customStyle='margin-left:0;' palette="{{templateEnd}}" bind:imgOK="onImgOK3" wx:if="{{nowPage != allPicture.length - 1 && !templateStart}}" />
+
+    <template is="img-compress" data="{{ canWidth, canHeight }}"></template>
+
+    <cover-view style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,.5);" wx:if="{{templateSubmit}}"></cover-view>
+
+    <view id="canvas-drag" style="width:{{dragWidth}}px; height:{{dragHeight}}px;" catchtouchmove="ture">
+        <view class="canvas-drag-bg" bindtap="finish_operationPic"></view>
+        <view class="bg"  wx:for="{{allPicture[nowPage]}}"  wx:key="index" wx:if="{{item.type === 'bg'}}" style=" left:{{item.x*dragWidth}}px ;top:{{item.y*dragHeight}}px; width: {{item.width*dragWidth}}px; height: {{item.height*dragHeight}}px; transform:rotate({{item.rotate}}deg);">
+            <image src="{{item.url}}" bindtap="finish_operationPic" />
+        </view>
+        <view class="bg" wx:for="{{allPicture[nowPage]}}" wx:key="index" wx:if="{{item.type === 'img'}}" style="left:{{item.x*dragWidth}}px; top:{{item.y*dragHeight}}px; width:{{item.width*dragWidth}}px; height:{{item.height*dragHeight}}px; transform:rotate({{item.rotate}}deg);">
+            <image src="{{item.url}}" bindtap="finish_operationPic" />
+        </view>
+
+        <!-- 图片 -->
+        <view class="image" wx:for="{{allPicture[nowPage]}}" wx:key="index" wx:if="{{item.type === 'frame'}}" style="left:{{item.x*dragWidth}}px; top:{{item.y*dragHeight}}px; width:{{item.width*dragWidth}}px; height:{{item.height*dragHeight}}px; ">
+            <view class="pic" data-name="{{item}}" data-index="{{index}}" bind:touchstart="touchstart"  style="-webkit-clip-path:{{item.val}};width: 100%; height: 100%;">
+                <image wx:if="{{!item.url}}" bindtap="upImg" mode="aspectFill" style="width:100%; height:100%;" src="../../resources/imgs/frameBg.png"/>
+                <image wx:else src="{{item.url}}" bind:touchstart="touchImageStart" catch:touchmove="touchImageMove" style="width:{{item.imgWidth*dragWidth}}px; height:{{item.imgHeight*dragHeight}}px;left:{{item.left*dragWidth}}px;top:{{item.top*dragHeight}}px;transform:rotate({{item.rotate}}deg);filter:brightness({{item.brightness}}); position: absolute;"/>
+            </view>
+        </view>
+
+        <!-- 贴纸 -->
+        <view class="sticker" wx:for="{{allPicture[nowPage]}}" wx:key="index" wx:if="{{item.type === 'paster'}}" data-name="{{item}}" data-index="{{index}}" bind:touchstart="touchstart" bind:touchmove="touchmove" style="left:{{item.x*dragWidth}}px ;top:{{item.y*dragHeight}}px; width: {{item.width*dragWidth}}px; height:{{item.height*dragHeight}}px; transform:rotate({{item.rotate}}deg); filter: brightness({{item.brightness}})">
+            <image src="{{item.url}}" />
+            <image wx:if="{{index == selectIndex ? 'Selected':''}}" class="move" data-name="{{item}}" data-index="{{index}}" catch:touchstart="startScale" catch:touchmove="moveScale" src="../../resources/imgs/move.png" />
+        </view>
+
+        <!-- 字体 -->
+        <view class="font" wx:for="{{allPicture[nowPage]}}" wx:key="index" wx:if="{{item.type === 'text'}}" data-name="{{item}}" data-index="{{index}}" bind:touchstart="touchstart" bind:touchmove="touchmove" style="left:{{item.x*dragWidth}}px; top:{{item.y*dragHeight}}px; color:{{item.color}}; font-size:{{item.fontSize*dragWidth}}px;font-family:{{item.family}}; width:{{item.width*dragWidth}}px; height:{{item.height*dragHeight}}px; transform:rotate({{item.rotate}}deg);">
+            <text class="{{item.sort == 'shu'?'shu':''}}">{{item.content?item.content:'请输入文字'}}</text>
+            <image wx:if="{{index == selectIndex ? 'Selected':''}}" class="move" data-name="{{item}}" data-index="{{index}}" catch:touchstart="startScale" catch:touchmove="moveScale" src="../../resources/imgs/move.png" />
+        </view>
+    </view>
+
+    <!-- 基本操作栏 -->
+    <view class="bottom" wx:if="{{actionBar === 'null'}}">
+        <view class="nav">
+            <view class="everyNav" bindtap="Show_Sticker">
+                <image src="../../resources/imgs/sticker.png" />
+                <text>贴纸</text>
+            </view>
+            <view class="everyNav" bindtap="Show_operationText" data-name='false'>
+                <image src="../../resources/imgs/word.png" />
+                <text>文字</text>
+            </view>
+            <view class="everyNav" bindtap="toMusic">
+                <image src="../../resources/imgs/music.png" />
+                <text>音乐</text>
+            </view>
+            <view class="everyNav" bindtap="toPageManage">
+                <image src="../../resources/imgs/page.png" />
+                <text>页面管理</text>
+            </view>
+            <view wx:if="{{nowPage < allPicture.length-1}}" class="everyNav" bindtap="temporary">
+                <image src="../../resources/imgs/storage.png" />
+                <text>暂存</text>
+            </view>
+            <view wx:if="{{nowPage >= allPicture.length-1}}" class="everyNav" bindtap="Finish_editing">
+                <image src="../../resources/imgs/finish.png" />
+                <text>完成</text>
+            </view>
+        </view>
+        <!-- 下一页/上一页 按钮 -->
+        <view class="btn">
+            <button wx:if="{{nowPage === 0 }}" class="no_right">上一页</button>
+            <button wx:if="{{nowPage !== 0 }}" class="left" bindtap="prvPic">上一页</button>
+            <button wx:if="{{nowPage < allPicture.length-1}}" class="right" bindtap="nextPage">下一页</button>
+            <button wx:if="{{nowPage >= allPicture.length-1}}" class="no_right">下一页</button>
+        </view>
+    </view>
+    <!-- 操作图片栏 -->
+    <view class="bottom" wx:if="{{actionBar === 'frame'}}">
+        <view class="nav">
+            <view class="everyNav" bindtap="onAddImage">
+                <image src="../../resources/imgs/replace.png" />
+                <text>更换图片</text>
+            </view>
+            <view class="everyNav" data-name='scale' bindtap="showModal">
+                <image src="../../resources/imgs/size.png" />
+                <text>大小</text>
+            </view>
+            <view class="everyNav" data-name='rotate' bindtap="showModal">
+                <image src="../../resources/imgs/rotate.png" />
+                <text>旋转</text>
+            </view>
+            <view class="everyNav" data-name='light' bindtap="showModal">
+                <image src="../../resources/imgs/light.png" />
+                <text>亮度</text>
+            </view>
+            <view class="everyNav" bindtap="mirImage">
+                <image src="../../resources/imgs/image.png" />
+                <text>镜像</text>
+            </view>
+        </view>
+        <view class="btn">
+            <button class="left" bindtap="finish_operationPic">确认</button>
+            <button class="no_right" bindtap="del_operationPic">删除</button>
+        </view>
+    </view>
+    <!-- 操作贴纸/文字栏 -->
+    <view class="bottom sticker" wx:if="{{actionBar === 'sticker'}}">
+        <view class="nav">
+            <view class="everyNav" data-name='light' bindtap="Show_operationText" wx:if="{{changeText}}">
+                <image src="../../resources/imgs/word.png" />
+                <text>编辑</text>
+            </view>
+            <view class="everyNav" data-name='scale' bindtap="showModal">
+                <image src="../../resources/imgs/size.png" />
+                <text>大小</text>
+            </view>
+            <view class="everyNav" data-name='rotate' bindtap="showModal">
+                <image src="../../resources/imgs/rotate.png" />
+                <text>旋转</text>
+            </view>
+            <view class="everyNav" data-name='light' bindtap="showModal" wx:if="{{!changeText}}">
+                <image src="../../resources/imgs/light.png" />
+                <text>亮度</text>
+            </view>
+            <view class="everyNav" bindtap="del_operationPic">
+                <image src="../../resources/imgs/del.png" />
+                <text>删除</text>
+            </view>
+        </view>
+        <view class="btn">
+            <button class="left" bindtap="finish_operationPic">确认</button>
+        </view>
+    </view>
+</view>
+<!-- 修改图片弹出层 -->
+<view class="modals" wx:if="{{hideModal}}">
+    <view class="bottom-dialog-body bottom-pos" animation="{{animationData}}">
+        <view class="close">
+            <image data-name="close" bindtap="hideModal" src="../../resources/imgs/close.png" />
+            <image bindtap="hideModal" src="../../resources/imgs/end.png" />
+        </view>
+        <!-- 滑块改变大小 -->
+        <view class="section section_gap" wx:if="{{Sliderbar === 'scale' }}">
+            <text class="section_title">{{scaleValue}}</text>
+            <view class="body-view">
+                <slider data-name='scale' value="{{scaleValue}}" bindchanging="Sliderbar" min="0" max="2" block-size="12" step="0.1" />
+            </view>
+        </view>
+        <!-- 滑块旋转角度 -->
+        <view class="section section_gap" wx:if="{{Sliderbar === 'rotate'}}">
+            <text class="section_title">{{rotateValue}}</text>
+            <view class="body-view">
+                <slider data-name='rotate' value="{{rotateValue}}" bindchanging="Sliderbar" min="-180" max="180" block-size="12" step="1" />
+            </view>
+        </view>
+        <!-- 滑块调整亮度 -->
+        <view class="section section_gap" wx:if="{{Sliderbar === 'light'}}">
+            <text class="section_title">{{lightValue}}</text>
+            <view class="body-view">
+                <slider data-name='light' value="{{lightValue}}" bindchanging="Sliderbar" min="0" max="2" block-size="12" step="0.1" />
+            </view>
+        </view>
+    </view>
+</view>
+<!-- 字体弹出层 -->
+<view class="modals" wx:if="{{operationText}}" catchtouchmove="ture">
+    <view class="Text_Modal bottom-pos" wx:if="{{!essay}}" animation="{{animationData}}">
+        <view class="close">
+            <image data-name="close" bindtap="Close_operationText" src="../../resources/imgs/close.png" />
+            <image data-name="finish" bindtap="Finish_operationText" src="../../resources/imgs/end.png" />
+        </view>
+        <view class="Text_box">
+            <view class="everyList">
+                <view class="Text_title">文字</view>
+                <input class="Text_pick text" placeholder="请输入文字" value="{{inputText}}" bindblur="inputText" />
+            </view>
+            <view class="everyList">
+                <view class="Text_title">字体</view>
+                <view class="Text_pick text" bindtap="Fontfamily">{{seletFontfamily.name?seletFontfamily.name:'选择字体'}}</view>
+            </view>
+            <view class="everyList">
+                <view class="Text_title">颜色</view>
+                <view class="Text_pick color" style="background:{{textColor}}" bindtap="changeColor">选择颜色</view>
+            </view>
+            <view class="everyList">
+                <view class="Text_title">排列</view>
+                <view class="btn">
+                    <button class="{{textDirection === 'heng' ?'textDirection':''}}" data-name="heng" bindtap="textDirection">横排</button>
+                    <button class="{{textDirection === 'shu' ?'textDirection':''}}" data-name="shu" bindtap="textDirection">竖排</button>
+                </view>
+            </view>
+            <view class="everyList">
+                <view class="essay" bindtap="changeEssay">选择推荐美文</view>
+            </view>
+        </view>
+    </view>
+    <!-- 推荐美文列 -->
+    <view class="Text_Modal bottom-pos" wx:if="{{essay}}" animation="{{animationData}}" catchtouchmove="ture">
+        <view class="close">
+            <image data-name="closeChangeEssay" bindtap="Close_operationText" src="../../resources/imgs/close.png" />
+            <view class="change" bindtap='changeMoreEssay'>换一批</view>
+        </view>
+        <view class="EssayBox">
+            <view class="everyEssay" wx:for="{{essayList}}" wx:key="index" bindtap="Essay" data-name="{{item}}">
+                {{item}}
+            </view>
+        </view>
+    </view>
+    <!-- 颜色列表 -->
+    <view class="Text_Modal bottom-pos" wx:if="{{color}}" animation="{{animationData}}" catchtouchmove="ture">
+        <view class="close">
+            <image data-name="closeChangeEssay" bindtap="Close_operationText" src="../../resources/imgs/close.png" />
+        </view>
+        <view class="changTextColor">
+            <scroll-view class="ColorBox" scroll-y>
+                <view class="everyColorbox" wx:for="{{allColor}}" wx:key="index" data-name="{{item}}" bindtap="Color" style=" background: {{item}}"></view>
+            </scroll-view >
+        </view>
+    </view>
+    <!-- 字体列表 -->
+    <view class="Text_Modal bottom-pos" wx:if="{{family}}" animation="{{animationData}}" catchtouchmove="ture">
+        <view class="close">
+            <image data-name="closeChangeEssay" bindtap="Close_operationfamily" src="../../resources/imgs/close.png" />
+        </view>
+        <view class="changTextColor">
+        <scroll-view class="ColorBox" scroll-y bindscrolltolower="Fontfamily">
+            <view class="everyFamilybox" wx:for="{{allFontfamily}}" wx:key="index" data-name="{{item}}" bindtap="changeFontFamily">
+                <text style="font-family:{{item.name}}">{{item.name}}字体样式</text>
+            </view>
+        </scroll-view >
+        </view>
+    </view>
+</view>
+<!-- 贴纸弹出层 -->
+<view class="modals" wx:if="{{Sticker_Modal}}">
+    <view class="Sticker_Modal bottom-pos" animation="{{animationData}}">
+        <view class="close">
+            <image data-name="close" bindtap="Close_Sticker" src="../../resources/imgs/close.png" />
+            <image data-name="finish" bindtap="Close_Sticker" src="../../resources/imgs/end.png" />
+        </view>
+        <scroll-view class="Sticker" scroll-x>
+            <view class="everySticker" wx:for="{{AllSticker}}" wx:key="index" data-name="{{item}}" bindtap="finish_Sticker">
+                <image src="{{item.thumb}}" />
+            </view>
+        </scroll-view>
+        <button class="btn" bindtap="open_AllSticker">全部贴纸</button>
+    </view>
+</view>
+<!-- 全部贴纸 -->
+<view wx:if="{{Show_AllSticker}}" class="AllSticker" style="height:{{wx.getSystemInfoSync().windowHeight}}">
+    <view class="every_Sticker" wx:for="{{AllSticker}}" wx:key="index" data-name="{{item}}" bindtap="changeSticker">
+        <image class="Sticker_img" src="{{item.thumb}}" />
+        <image wx:if="{{selectSticker.thumb === item.thumb}}" class="select" src="../../resources/imgs/selectPage.png" />
+    </view>
+    <view class="btn">
+        <button class="everybtn" bindtap="finish_Sticker">确认</button>
+        <button class="everybtn" bindtap="close_Sticker">返回</button>
+    </view>
+</view>
+<!-- 完成编辑 -->
+<view wx:if="{{Finish_editing}}" class="Finish_editing">
+    <view class="editing_box">
+        <view class="editing_box_top">是否完成编辑？</view>
+        <view class="editing_box_bottom">
+            <view class="noFinish" bindtap="noFinish">我再想想</view>
+            <view class="Finish" bindtap="Finish">已完成</view>
+        </view>
+    </view>
+</view>
+<!-- 页面管理 -->
+<view class="pageManage" wx:if="{{pageManage}}" bindtap="cleanSelectImg">
+    <view class="box">
+        <text class="touchMove">点击页面拖动可改变顺序</text>
+        <view class="everyPage" wx:for="{{allPicture}}" wx:key="index" data-name="{{index}}" catchtap="selectPage" bind:touchstart="managetouchstart" bind:touchend="mangeend" catchtouchmove="ture">  
+           
+        <view class="everyPage_moudl" wx:if="{{index === nowPage}}">当前页</view>
+            <image wx:if="{{index === selectPage}}" class="selectImg" src="../../resources/imgs/selectPage.png" />
+
+            <view class="every">
+                <view wx:for="{{item}}" wx:key="index" wx:if="{{item.type === 'bg'}}" style="left:{{item.x*200}}rpx ;top:{{item.y*282}}rpx; width: {{item.width*200}}rpx; height: {{item.height*282}}rpx; transform:rotate({{item.rotate}}deg); position: absolute;">
+                    <image src="{{item.url}}" style="width:100%;height: 100%; position: absolute;left: 0;top: 0;" />
+                </view>
+                <view wx:for="{{item}}" wx:key="index" wx:if="{{item.type === 'img'}}" style="left:{{item.x*200}}rpx ;top:{{item.y*282}}rpx; width: {{item.width*200}}rpx; height: {{item.height*282}}rpx; transform:rotate({{item.rotate}}deg); position: absolute;">
+                    <image src="{{item.url}}" style="width:100%;height: 100%;" />
+                </view>
+                <view wx:for="{{item}}" wx:key="index" wx:if="{{item.type === 'frame'}}" style="left:{{item.x*200}}rpx; top:{{item.y*282}}rpx; width:{{item.width*200}}rpx; height:{{item.height*282}}rpx;position: absolute;">
+                    <view style="-webkit-clip-path:{{item.val}}; position: absolute; width: 100%; height: 100%;">
+                        <image wx:if="{{item.url}}" src="{{item.url}}" style="width:{{item.imgWidth*200}}rpx; height:{{item.imgHeight*282}}rpx;left:{{item.left*200}}rpx;top:{{item.top*282}}rpx;transform:rotate({{item.rotate}}deg); filter:brightness({{item.brightness}});position: absolute;" />
+                        <image wx:if="{{!item.url}}" style="width:100%; height:100%;" mode="aspectFill" src="../../resources/imgs/frameBg.png"/>
+                    </view>
+                </view>
+                <view wx:for="{{item}}" wx:key="index" wx:if="{{item.type === 'paster'}}" style="left:{{item.x*200}}rpx ;top:{{item.y*282}}rpx; width: {{item.width*200}}rpx; height: {{item.height*282}}rpx; transform:rotate({{item.rotate}}deg); position: absolute;">
+                      <image src="{{item.url}}" style="width:100%;height: 100%; position: absolute;left: 0;top: 0;" />
+                </view>
+                <view wx:for="{{item}}" wx:key="index" class="{{item.sort === 'shu'?'shu':''}}" wx:if="{{item.type === 'text'}}" style="left:{{item.x*200}}rpx ;top:{{item.y*282}}rpx; width: {{item.width*200}}rpx; height: {{item.height*282}}rpx; transform:rotate({{item.rotate}}deg);color:{{item.color}}; font-size:{{item.fontSize*200}}rpx;font-family:{{item.family}};  position: absolute;">
+                    {{item.content?item.content:'请输入文字'}}
+                </view>
+            </view>
+            <text wx:if="{{index==0}}">封面</text>
+            <text wx:if="{{index == allPicture.length -1}}">封底</text>
+        </view>
+    </view>
+    <view class="btn" wx:if="{{selectPage === null}}">
+        <text>选择以上任意页面替换当前页</text>
+        <button bindtap="closeChangePage">返回</button>
+    </view>
+    <view wx:if="{{selectPage !== null}}" class="everyBtn">
+        <button class="Btn_list" bindtap="finishChangePage">替换当前页</button>
+        <button class="Btn_list" bindtap="closeChangePage">返回</button>
+    </view>
+</view>
+<!-- 镜像画布 -->
+<canvas id="cvs" wx:if="{{cvss}}" style="width: {{cvs_w}}px; height: {{cvs_h}}px; " canvas-id="myJingXiangCanvas"></canvas>
+<!-- 暂未登录 -->
+<view class="isLogin" wx:if="{{isLogin}}">
+    <view class="login_box">
+        <text>您还没有登录，请先登录吧！</text>
+        <button open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+            <image src="/resources/imgs/wechat.png" mode="aspectFit"></image>
+        </button>
+    </view>
+</view>

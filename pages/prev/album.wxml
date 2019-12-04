@@ -1,0 +1,52 @@
+<view class="preview">
+    <painter customStyle='margin-left:0; {{changeWidth}}{{changeHeight}}' palette="{{template}}" bind:imgOK="onImgOK" />
+    <cover-view style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,.5);" wx:if="{{template}}"></cover-view>
+    <view class="box">
+        <image bindtap="takeMusic" wx:if="{{music}}" class="music {{takeMusic ? 'rotate':''}}" src="/resources/imgs/musicico.png" />
+        <swiper class="swiper" vertical="true" current="{{current}}" bindchange="changeCurrent">
+            <block wx:for="{{allData}}" wx:key="index">
+                <swiper-item>
+                    <view class="bg" style="width: {{width}}px; height: {{height}}px;">
+                        <view wx:for="{{item}}" wx:key="index" wx:if="{{item.type === 'bg'}}" style="left:{{item.x*width}}px ;top:{{item.y*height}}px; width: {{item.width*width}}px; height: {{item.height*height}}px; transform:rotate({{item.rotate}}deg); position: absolute;">
+                            <image src="{{item.url}}" style="width:100%;height: 100%;" />
+                        </view>
+                        <view wx:for="{{item}}" wx:key="index" wx:if="{{item.type === 'img'}}" style="left:{{item.x*width}}px ;top:{{item.y*height}}px; width: {{item.width*width}}px; height: {{item.height*height}}px; transform:rotate({{item.rotate}}deg); position: absolute;">
+                            <image src="{{item.url}}" style="width:100%;height: 100%;" />
+                        </view>
+                        <view wx:for="{{item}}" wx:key="index" wx:if="{{item.type === 'frame'}}" style="left:{{item.x*width}}px; top:{{item.y*height}}px; width:{{item.width*width}}px; height:{{item.height*height}}px; filter:brightness({{item.brightness}});position: absolute;">
+                            <view style="-webkit-clip-path:{{item.val}}; position: absolute; width: 100%; height: 100%;">
+                                <image wx:if="{{item.url}}" src="{{item.url}}" style="width:{{item.imgWidth*width}}px; height:{{item.imgHeight*height}}px;left:{{item.left*width}}px;top:{{item.top*height}}px;transform:rotate({{item.rotate}}deg) ;filter:brightness({{item.brightness}});position: absolute;" />
+                                <image wx:if="{{!item.url}}" bindtap="upImg" style="width:100%; height:100%;" mode="aspectFill" src="../../resources/imgs/frameBg.png" />
+                            </view>
+                        </view>
+                        <view wx:for="{{item}}" wx:key="index" wx:if="{{item.type === 'paster'}}" style="left:{{item.x*width}}px ;top:{{item.y*height}}px; width: {{item.width*width}}px; height: {{item.height*height}}px; transform:rotate({{item.rotate}}deg); position: absolute;">
+                            <image src="{{item.url}}" style="width:100%;height: 100%;" />
+                        </view>
+                        <view wx:for="{{item}}" wx:key="index" class="{{item.sort == 'shu'?'shu':''}}" wx:if="{{item.type === 'text'}}" style="left:{{item.x*width}}px ;top:{{item.y*height}}px; width: {{item.width*width}}px; height: {{item.height*height}}px; transform:rotate({{item.rotate}}deg);color:{{item.color}}; font-size:{{item.fontSize*width}}px;font-family:{{item.family}};  position: absolute;">
+                            {{item.content?item.content:'请输入文字'}}
+                        </view>
+                    </view>
+                </swiper-item>
+            </block>
+        </swiper>
+        <image class="Upslide" src="/resources/imgs/Upslide.png" wx:if="{{current != allData.length -1}}" />
+        <view class="bottom_btn" wx:else>
+            <button class="share" open-type="share" data-id="{{goodsId}}" data-name="{{tmpName}}" wx:if="{{isEdit && !isShare}}">
+                <image src="../../resources/imgs/share.png" />
+            </button>
+            <button open-type="share" data-id="{{goodsId}}" data-name="{{tmpName}}" wx:if="{{!isEdit && !isShare}}">
+                分享到微信
+            </button>
+            <button class="right" wx:if="{{!isEdit && !isShare}}" bindtap="toMaking">
+                预览及制作相片书
+            </button>
+            <button class="right" wx:if="{{isEdit && !isShare}}" bindtap="toEdit">编辑相册</button>
+            <button class="right" wx:if="{{isEdit && !isShare}}" bindtap="toMaking">
+                预览及制作相片书
+            </button>
+            <button class="right" wx:if="{{isShare}}" bindtap="toIndex">查看更多模板</button>
+            <image class="saveCode" src="/resources/imgs/saveCode.png" mode="aspectFit" bindtap="saveCode" wx:if="{{current == allData.length - 1 && openid}}"></image>
+        </view>
+        <!-- <text class="saveCode" bindtap="saveCode" wx:if="{{current == allData.length -1}}">保存二维码</text> -->
+    </view>
+</view>

@@ -1,0 +1,19 @@
+<!--pages/personalCenter/setUp/index.wxml-->
+<view class="container">
+    <view class="userImg">
+        <text>头像</text>
+
+        <view class="img-et" bindtap="changeImg">
+            <image src="{{imgUrl ? imgUrl : headimg}}" mode="aspectFit" />
+            <image src="/resources/imgs/moreselect.png" mode="aspectFit" />
+        </view>
+    </view>
+
+    <view class="userName">
+        <text>昵称</text>
+
+        <input type="text" name="name" placeholder="请输入昵称" placeholder-style="color: #999;" maxlength="20" value="{{ipt ? ipt : username}}" bindblur="saveInput" />
+    </view>
+
+    <text class="saveBtn" bindtap="saveInfo">保存</text>
+</view>

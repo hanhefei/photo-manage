@@ -1,0 +1,25 @@
+<!--pages/personalCenter/setUp/index.wxml-->
+<view class="box">
+    
+    <view class="everySetUp" bindtap="{{login ? 'toAccount' : 'showToast'}}">
+        <text>账号设置</text>
+        <image src="/resources/imgs/moreselect.png" />
+    </view>
+
+    <view class="everySetUp" bindtap="toFeedBack">
+        <text>问题反馈</text>
+        <image src="/resources/imgs/moreselect.png" />
+    </view>
+
+    <view class="everySetUp" data-tp="phone" bindtap="toDetails">
+        <text>客服电话</text>
+        <image src="/resources/imgs/moreselect.png" />
+    </view>
+
+    <view class="everySetUp" data-tp="txt" bindtap="toDetails">
+        <text>关于我们</text>
+        <image src="/resources/imgs/moreselect.png" />
+    </view>
+
+
+</view>

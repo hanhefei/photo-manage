@@ -1,0 +1,145 @@
+<view wx:if="{{!make}}" class="box">
+    <view class="preview">
+        <view class="everyPage" bind:touchstart="prevPage" wx:if="{{nowImg != 0 }}">
+            <view wx:for="{{allData[2*nowImg-1]}}" wx:key="index" wx:if="{{item.type === 'bg'}}" style="left:{{item.x*width}}px ;top:{{item.y*height}}px; width: {{item.width*width}}px; height: {{item.height*height}}px; transform:rotate({{item.rotate}}deg); position: absolute;">
+                <image src="{{item.url}}" style="width:100%;height: 100%; position: absolute;left: 0;top: 0;" />
+            </view>
+            <view wx:for="{{allData[2*nowImg-1]}}" wx:key="index" wx:if="{{item.type === 'img'}}" style="left:{{item.x*width}}px ;top:{{item.y*height}}px; width: {{item.width*width}}px; height: {{item.height*height}}px; transform:rotate({{item.rotate}}deg); position: absolute;">
+                <image src="{{item.url}}" style="width:100%;height: 100%; position: absolute;left: 0;top: 0;" />
+            </view>
+            <view wx:for="{{allData[2*nowImg-1]}}" wx:key="index" wx:if="{{item.type === 'frame'}}" style="left:{{item.x*width}}px; top:{{item.y*height}}px; width:{{item.width*width}}px; height:{{item.height*height}}px;position: absolute;">
+                <view style="-webkit-clip-path:{{item.val}}; position: absolute; width: 100%; height: 100%;">
+                    <image wx:if="{{item.url}}" src="{{item.url}}" style="width:{{item.imgWidth*width}}px; height:{{item.imgHeight*height}}px;left:{{item.left*width}}px;top:{{item.top*height}}px;filter:brightness({{item.brightness}});transform:rotate({{item.rotate}}deg);position: absolute;" />
+                    <image wx:if="{{!item.url}}" style="width:100%; height:100%;" mode="aspectFill" src="../../resources/imgs/frameBg.png" />
+                </view>
+            </view>
+            <view wx:for="{{allData[2*nowImg-1]}}" wx:key="index" wx:if="{{item.type === 'paster'}}" style="left:{{item.x*width}}px ;top:{{item.y*height}}px; width: {{item.width*width}}px; height: {{item.height*height}}px; transform:rotate({{item.rotate}}deg); position: absolute;">
+                <image src="{{item.url}}" style="width:100%;height: 100%; position: absolute;left: 0;top: 0;" />
+            </view>
+            <view wx:for="{{allData[2*nowImg-1]}}" wx:key="index" class="{{item.sort == 'shu'?'shu':''}}" wx:if="{{item.type === 'text'}}" style="left:{{item.x*width}}px ;top:{{item.y*height}}px; width: {{item.width*width}}px; height: {{item.height*height}}px; transform:rotate({{item.rotate}}deg);color:{{item.color}}; font-size:{{item.fontSize*width}}px;font-family:{{item.family}};  position: absolute;">
+                {{item.content?item.content:'请输入文字'}}
+            </view>
+        </view>
+        <!-- 封底 -->
+        <view class="everyPage" bind:touchstart="prevPage" wx:if="{{nowImg == 0 }}">
+            <view wx:for="{{allData[allData.length -1]}}" wx:key="index" wx:if="{{item.type === 'bg'}}" style="left:{{item.x*width}}px ;top:{{item.y*height}}px; width: {{item.width*width}}px; height: {{item.height*height}}px; transform:rotate({{item.rotate}}deg); position: absolute;">
+                <image src="{{item.url}}" style="width:100%;height: 100%; position: absolute;left: 0;top: 0;" />
+            </view>
+            <view wx:for="{{allData[allData.length -1]}}" wx:key="index" wx:if="{{item.type === 'img'}}" style="left:{{item.x*width}}px ;top:{{item.y*height}}px; width: {{item.width*width}}px; height: {{item.height*height}}px; transform:rotate({{item.rotate}}deg); position: absolute;">
+                <image src="{{item.url}}" style="width:100%;height: 100%; position: absolute;left: 0;top: 0;" />
+            </view>
+            <view wx:for="{{allData[allData.length -1]}}" wx:key="index" wx:if="{{item.type === 'frame'}}" style="left:{{item.x*width}}px; top:{{item.y*height}}px; width:{{item.width*width}}px; height:{{item.height*height}}px;position: absolute;">
+                <view style="-webkit-clip-path:{{item.val}}; position: absolute; width: 100%; height: 100%;">
+                    <image wx:if="{{item.url}}" src="{{item.url}}" style="width:{{item.imgWidth*width}}px; height:{{item.imgHeight*height}}px;left:{{item.left*width}}px;top:{{item.top*height}}px;transform:rotate({{item.rotate}}deg);filter:brightness({{item.brightness}});position: absolute;" />
+                    <image wx:if="{{!item.url}}" style="width:100%; height:100%;" mode="aspectFill" src="../../resources/imgs/frameBg.png" />
+                </view>
+            </view>
+            <view wx:for="{{allData[allData.length -1]}}" wx:key="index" wx:if="{{item.type === 'paster'}}" style="left:{{item.x*width}}px ;top:{{item.y*height}}px; width: {{item.width*width}}px; height: {{item.height*height}}px; transform:rotate({{item.rotate}}deg); position: absolute;">
+                <image src="{{item.url}}" style="width:100%;height: 100%; position: absolute;left: 0;top: 0;" />
+            </view>
+            <view wx:for="{{allData[allData.length -1]}}" wx:key="index" class="{{item.sort == 'shu'?'shu':''}}" wx:if="{{item.type === 'text'}}" style="left:{{item.x*width}}px ;top:{{item.y*height}}px; width: {{item.width*width}}px; height: {{item.height*height}}px; transform:rotate({{item.rotate}}deg);color:{{item.color}}; font-size:{{item.fontSize*width}}px;font-family:{{item.family}};  position: absolute;">
+                {{item.content?item.content:'请输入文字'}}
+            </view>
+        </view>
+        <!-- 分割线 -->
+        <view class="line"></view>
+        <view class="everyPage" bind:touchstart="nextPage" wx:if="{{nowImg != 0 && allData.length /2 == nowImg+0.5}}"></view>
+        <view class="everyPage" bind:touchstart="nextPage" wx:if="{{nowImg != 0 && allData.length /2 > nowImg+0.5}}">
+            <view wx:for="{{allData[2*nowImg]}}" wx:key="index" wx:if="{{item.type === 'bg'}}" style="left:{{item.x*width}}px ;top:{{item.y*height}}px; width: {{item.width*width}}px; height: {{item.height*height}}px; transform:rotate({{item.rotate}}deg); position: absolute;">
+                <image src="{{item.url}}" style="width:100%;height: 100%; position: absolute;left: 0;top: 0;" />
+            </view>
+            <view wx:for="{{allData[2*nowImg]}}" wx:key="index" wx:if="{{item.type === 'img'}}" style="left:{{item.x*width}}px ;top:{{item.y*height}}px; width: {{item.width*width}}px; height: {{item.height*height}}px; transform:rotate({{item.rotate}}deg); position: absolute;">
+                <image src="{{item.url}}" style="width:100%;height: 100%; position: absolute;left: 0;top: 0;" />
+            </view>
+            <view wx:for="{{allData[2*nowImg]}}" wx:key="index" wx:if="{{item.type === 'frame'}}" style="left:{{item.x*width}}px; top:{{item.y*height}}px; width:{{item.width*width}}px; height:{{item.height*height}}px;position: absolute;">
+                <view style="-webkit-clip-path:{{item.val}}; position: absolute; width: 100%; height: 100%;">
+                    <image wx:if="{{item.url}}" src="{{item.url}}" style="width:{{item.imgWidth*width}}px; height:{{item.imgHeight*height}}px;left:{{item.left*width}}px;top:{{item.top*height}}px;transform:rotate({{item.rotate}}deg);filter:brightness({{item.brightness}});position: absolute;" />
+                    <image wx:if="{{!item.url}}" style="width:100%; height:100%;" mode="aspectFill" src="../../resources/imgs/frameBg.png" />
+                </view>
+            </view>
+            <view wx:for="{{allData[2*nowImg]}}" wx:key="index" wx:if="{{item.type === 'paster'}}" style="left:{{item.x*width}}px ;top:{{item.y*height}}px; width: {{item.width*width}}px; height: {{item.height*height}}px; transform:rotate({{item.rotate}}deg); position: absolute;">
+                <image src="{{item.url}}" style="width:100%;height: 100%; position: absolute;left: 0;top: 0;" />
+            </view>
+            <view wx:for="{{allData[2*nowImg]}}" wx:key="index" class="{{item.sort == 'shu'?'shu':''}}" wx:if="{{item.type === 'text'}}" style="left:{{item.x*width}}px ;top:{{item.y*height}}px; width: {{item.width*width}}px; height: {{item.height*height}}px; transform:rotate({{item.rotate}}deg);color:{{item.color}}; font-size:{{item.fontSize*width}}px;font-family:{{item.family}};  position: absolute;">
+                {{item.content?item.content:'请输入文字'}}
+            </view>
+        </view>
+        <!-- 封面 -->
+        <view class="everyPage" bind:touchstart="nextPage" wx:if="{{nowImg == 0 }}">
+            <view wx:for="{{allData[2*nowImg]}}" wx:key="index" wx:if="{{item.type === 'bg'}}" style="left:{{item.x*width}}px ;top:{{item.y*height}}px; width: {{item.width*width}}px; height: {{item.height*height}}px; transform:rotate({{item.rotate}}deg); position: absolute;">
+                <image src="{{item.url}}" style="width:100%;height: 100%; position: absolute;left: 0;top: 0;" />
+            </view>
+            <view wx:for="{{allData[2*nowImg]}}" wx:key="index" wx:if="{{item.type === 'img'}}" style="left:{{item.x*width}}px ;top:{{item.y*height}}px; width: {{item.width*width}}px; height: {{item.height*height}}px; transform:rotate({{item.rotate}}deg); position: absolute;">
+                <image src="{{item.url}}" style="width:100%;height: 100%; position: absolute;left: 0;top: 0;" />
+            </view>
+            <view wx:for="{{allData[2*nowImg]}}" wx:key="index" wx:if="{{item.type === 'frame'}}" style="left:{{item.x*width}}px; top:{{item.y*height}}px; width:{{item.width*width}}px; height:{{item.height*height}}px;position: absolute;">
+                <view style="-webkit-clip-path:{{item.val}}; position: absolute; width: 100%; height: 100%;">
+                    <image wx:if="{{item.url}}" src="{{item.url}}" style="width:{{item.imgWidth*width}}px; height:{{item.imgHeight*height}}px;left:{{item.left*width}}px;top:{{item.top*height}}px;transform:rotate({{item.rotate}}deg);filter:brightness({{item.brightness}});position: absolute;" />
+                    <image wx:if="{{!item.url}}" style="width:100%; height:100%;" mode="aspectFill" src="../../resources/imgs/frameBg.png" />
+                </view>
+            </view>
+            <view wx:for="{{allData[2*nowImg]}}" wx:key="index" wx:if="{{item.type === 'paster'}}" style="left:{{item.x*width}}px ;top:{{item.y*height}}px; width: {{item.width*width}}px; height: {{item.height*height}}px; transform:rotate({{item.rotate}}deg); position: absolute;">
+                <image src="{{item.url}}" style="width:100%;height: 100%; position: absolute;left: 0;top: 0;" />
+            </view>
+            <view wx:for="{{allData[2*nowImg]}}" wx:key="index" class="{{item.sort === 'shu'?'shu':''}}" wx:if="{{item.type === 'text'}}" style="left:{{item.x*width}}px ;top:{{item.y*height}}px; width: {{item.width*width}}px; height: {{item.height*height}}px; transform:rotate({{item.rotate}}deg);color:{{item.color}}; font-size:{{item.fontSize*width}}px;font-family:{{item.family}};  position: absolute;">
+                {{item.content?item.content:'请输入文字'}}
+            </view>
+        </view>
+    </view>
+    <view class="btn">
+        <button bindtap="make">马上制作</button>
+    </view>
+</view>
+<!-- 制作页面 -->
+<view wx:if="{{make}}" class="make">
+    <view class="option">
+        <view class="everyOption">
+            <view class="title">材质</view>
+            <view class="product">
+                <view class="everybox" wx:for="{{bookMaterial}}" wx:key="index" data-tp="material" data-idx="{{index}}" bindtap="selectThis">
+                    <view class="everyInfo">
+                        <image src="{{item.thumb}}" />
+                        <!-- <view class="parameter">
+                            <text>相关参数</text>
+                            <text>{{item.text}}</text>
+                        </view> -->
+                        <view class="choose {{materialIdx == index ? 'cur' : ''}}">
+                            {{item.name}}
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="everyOption">
+            <view class="title">尺寸</view>
+            <view class="product">
+                <view class="everybox" wx:for="{{bookSize}}" wx:key="index" data-tp="size" data-idx="{{index}}" bindtap="selectThis">
+                    <view class="everyInfo">
+                        <image src="{{item.thumb}}" />
+                        <view class="parameter">
+                            <text>相关参数</text>
+                            <text>{{item.text}}</text>
+                        </view>
+                        <view class="choose {{sizeIdx == index ? 'cur' : ''}}">{{item.name}}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="everyOption">
+            <view class="title">数量</view>
+            <view class="product btn">
+                <image bindtap="buy_reduce" src="../../resources/imgs/buy_reduce.png" />
+                <view style="color:#333333">{{buyNumber}}</view>
+                <image bindtap="buy_add" src="../../resources/imgs/buy_add.png" />
+            </view>
+        </view>
+    </view>
+    <view class="bottom">
+        <view class="money">
+            价格:
+            <text>{{money}}</text>
+            元
+        </view>
+        <button class="btn" bindtap="toSubmit">去付款</button>
+    </view>
+</view>
